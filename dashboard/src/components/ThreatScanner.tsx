@@ -151,9 +151,38 @@ export function ThreatScanner() {
           <div className="mt-8 p-6 bg-emerald-950/40 border border-emerald-900 rounded-xl text-center relative z-10 text-emerald-400">
             <ShieldCheck className="w-12 h-12 mx-auto mb-4" />
             <h3 className="text-xl font-bold mb-2">POST-QUANTUM SECURE</h3>
-            <p className="text-emerald-200">
+            <p className="text-emerald-200 mb-6">
               This host is actively utilizing Lattice-based cryptography. Network is strictly immune to Shor's Algorithm attacks.
             </p>
+            <button
+              onClick={async () => {
+                try {
+                  const res = await fetch('/api/cbom', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      target: targetUrl,
+                      algorithm: "X25519MLKEM768",
+                      status: "Verified",
+                      timestamp: new Date().toISOString()
+                    })
+                  });
+                  const blob = await res.blob();
+                  const url = window.URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.href = url;
+                  a.download = `cbom_${targetUrl.replace(/[^a-zA-Z0-9]/g, '_')}.json`;
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
+                } catch (error) {
+                  alert("Failed to generate CBOM");
+                }
+              }}
+              className="inline-block bg-emerald-600 text-black font-bold py-2 px-6 rounded-lg shadow-lg hover:bg-emerald-500 transition-all"
+            >
+              Generate CBOM (CycloneDX)
+            </button>
           </div>
         )}
       </div>
