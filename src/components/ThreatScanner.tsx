@@ -161,10 +161,10 @@ export function ThreatScanner() {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                      target: targetUrl,
-                      algorithm: "X25519MLKEM768",
-                      status: "Verified",
-                      timestamp: new Date().toISOString()
+                      hostname: targetUrl,
+                      keyExchange: "X25519MLKEM768",
+                      signatureAlgorithm: "ML-DSA-65",
+                      isQuantumSafe: true
                     })
                   });
                   const blob = await res.blob();
