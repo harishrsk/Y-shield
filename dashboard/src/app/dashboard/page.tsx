@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { ShieldAlert } from "lucide-react";
 import { redirect } from "next/navigation";
 import { LicenseCard } from "@/components/LicenseCard";
+import { AnalyticsWidgets } from "@/components/AnalyticsWidgets";
 
 export default async function UserDashboard() {
   const session = await getServerSession();
@@ -48,13 +49,15 @@ export default async function UserDashboard() {
       ))}
 
       {activeLicenses.length === 0 && (
-        <div className="text-center py-24 bg-gray-900 border border-gray-800 rounded-xl">
+        <div className="text-center py-24 bg-gray-900 border border-gray-800 rounded-xl mb-12">
           <p className="text-gray-500 italic mb-4">No active quantum-safe licenses found.</p>
           <a href="/checkout" className="inline-block px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-black font-bold rounded transition-all">
             Purchase Sovereign License
           </a>
         </div>
       )}
+
+      <AnalyticsWidgets />
     </div>
   );
 }
