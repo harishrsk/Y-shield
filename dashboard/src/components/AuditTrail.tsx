@@ -27,9 +27,9 @@ export function AuditTrail() {
         <h2 className="text-3xl font-bold text-white">Live Sovereign Audit Trail</h2>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-gray-900/40 backdrop-blur-xl">
+      <div className="overflow-y-auto max-h-[400px] rounded-2xl border border-white/10 bg-gray-900/40 backdrop-blur-xl shadow-inner scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
         <table className="min-w-full divide-y divide-white/10">
-          <thead className="bg-white/5">
+          <thead className="bg-gray-900 sticky top-0 z-10 shadow-md">
             <tr>
               <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Event Type</th>
               <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Target</th>
