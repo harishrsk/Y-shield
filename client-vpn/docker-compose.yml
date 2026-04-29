@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  yochan_vpn_client:
+    image: openquantumsafe/nginx:latest
+    container_name: yochan_vpn_client
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx-client.conf:/opt/nginx/conf/nginx.conf
+    restart: unless-stopped
