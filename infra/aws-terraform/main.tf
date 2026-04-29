@@ -51,6 +51,11 @@ resource "aws_ecs_task_definition" "gateway_task" {
           containerPort = 443
           hostPort      = 443
           protocol      = "tcp"
+        },
+        {
+          containerPort = 80
+          hostPort      = 80
+          protocol      = "tcp"
         }
       ]
       environment = [
@@ -94,6 +99,25 @@ resource "aws_lb_listener" "nlb_listener" {
   }
 }
 
+resource "aws_lb_target_group" "gateway_tg_http" {
+  name        = "yochan-gateway-tg-http"
+  port        = 80
+  protocol    = "TCP"
+  vpc_id      = aws_vpc.pqc_vpc.id
+  target_type = "ip"
+}
+
+resource "aws_lb_listener" "nlb_listener_http" {
+  load_balancer_arn = aws_lb.nlb.arn
+  port              = "80"
+  protocol          = "TCP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.gateway_tg_http.arn
+  }
+}
+
 resource "aws_ecs_service" "gateway_service" {
   name            = "yochan-shield-gateway-svc"
   cluster         = aws_ecs_cluster.shield_cluster.id
@@ -110,5 +134,11 @@ resource "aws_ecs_service" "gateway_service" {
     target_group_arn = aws_lb_target_group.gateway_tg.arn
     container_name   = "gateway"
     container_port   = 443
+  }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.gateway_tg_http.arn
+    container_name   = "gateway"
+    container_port   = 80
   }
 }
