@@ -10,6 +10,20 @@ export function ThreatScanner() {
 
   const startScan = async () => {
     if (!targetUrl) return;
+
+    // --- Domain Validation Engine ---
+    const domainRegex = /^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/i;
+    if (!domainRegex.test(targetUrl.replace(/^https?:\/\//, ""))) {
+      setLogs([
+        `[ERROR] Invalid Target: "${targetUrl}"`,
+        `[SYSTEM] Deep Scan aborted.`,
+        `[HELP] Please enter a valid fully qualified domain name (FQDN).`,
+        `[HELP] Example: yochanenterprises.com or mail.google.com`
+      ]);
+      setScanState("IDLE");
+      return;
+    }
+
     setScanState("SCANNING");
     setLogs([`[SYSTEM] Connecting to ${targetUrl}...`, `[NETWORK] Initiating TLS handshake over port 443...`]);
 
