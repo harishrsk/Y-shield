@@ -11,6 +11,7 @@ import { Shield } from "lucide-react";
 export default function Home() {
   const [sovereignRegion, setSovereignRegion] = useState("AWS Mumbai (ap-south-1)");
   const [showSovereignModal, setShowSovereignModal] = useState(false);
+  const [showLaymanGuide, setShowLaymanGuide] = useState(false);
   const isSovereign = sovereignRegion.includes("Mumbai") || sovereignRegion.includes("Delhi") || sovereignRegion.includes("Pune");
   
   return (
@@ -38,9 +39,20 @@ export default function Home() {
             Yochan-Shield
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            The World's First Commercial-Grade Post-Quantum Gateway. 
+            The World&apos;s First Commercial-Grade Post-Quantum Gateway. 
             Dual-deployment on AWS or Local. Protect your assets with <code className="text-emerald-300 bg-emerald-900/40 px-1 py-0.5 rounded">x25519_mlkem768</code> today.
           </p>
+          
+          <div className="mt-4">
+            <button 
+              onClick={() => setShowLaymanGuide(true)}
+              className="text-xs font-mono text-emerald-500/70 hover:text-emerald-400 transition-colors uppercase tracking-widest flex items-center justify-center gap-2 mx-auto"
+            >
+              <span className="w-4 h-px bg-emerald-500/30"></span>
+              What is this? (The Layman&apos;s Guide)
+              <span className="w-4 h-px bg-emerald-500/30"></span>
+            </button>
+          </div>
           
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a href="/checkout" className="rounded-md bg-emerald-500 px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400">
@@ -126,6 +138,48 @@ export default function Home() {
             >
               Cancel
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Layman's Guide Modal */}
+      {showLaymanGuide && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md px-4">
+          <div className="bg-gray-950 border border-emerald-500/20 rounded-3xl p-8 max-w-2xl w-full shadow-[0_0_50px_rgba(16,185,129,0.1)] relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 opacity-5">
+              <Shield className="w-64 h-64 text-emerald-500" />
+            </div>
+            
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 bg-emerald-500/10 rounded-2xl">
+                  <Shield className="w-8 h-8 text-emerald-400" />
+                </div>
+                <h3 className="text-3xl font-bold text-white tracking-tight">The Layman&apos;s Guide</h3>
+              </div>
+
+              <div className="space-y-6 text-lg leading-relaxed text-gray-300">
+                <p>
+                  Think of the internet today as using <span className="text-white font-semibold italic underline decoration-emerald-500/30">standard padlocks</span>. They work great for now, but a new type of <span className="text-emerald-400 font-bold">&quot;Quantum&quot; skeleton key</span> is being built that can open almost every padlock in the world.
+                </p>
+                <p>
+                  Companies are already &quot;harvesting&quot; encrypted data today, waiting for that key to be finished so they can unlock it later. 
+                </p>
+                <div className="p-6 bg-emerald-950/20 border border-emerald-500/20 rounded-2xl italic">
+                  &quot;Yochan-Shield replaces those old padlocks with new, <span className="text-emerald-400 font-bold underline">Quantum-Safe locks</span> that are mathematically impossible for that new key to open. We keep your data safe not just for today, but for the next 50 years.&quot;
+                </div>
+              </div>
+
+              <div className="mt-10 pt-8 border-t border-gray-900 flex justify-between items-center">
+                <div className="text-sm text-gray-500 font-mono uppercase tracking-widest">Simple Secure Sovereign</div>
+                <button 
+                  onClick={() => setShowLaymanGuide(false)}
+                  className="px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-black font-bold rounded-xl transition shadow-lg shadow-emerald-500/20"
+                >
+                  Got it, thanks!
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
