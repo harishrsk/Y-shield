@@ -14,3 +14,11 @@ These cryptographic primitives align with:
 Yochan-Shield operates on a fundamentally Zero-Trust architecture (adhering to NIST Special Publication 800-207). 
 *   **Self-Custody:** All cryptographic keys generated or utilized by the Gateway are strictly held within the Host Environment (AWS Fargate/Local Host). Yochan-Shield does not extract, copy, or "backup" private key material on behalf of the customer.
 *   **Data Sovereignty:** By deploying the Gateway locally or within a controlled Virtual Private Cloud (VPC), all data traffic, logging, and interception logic remain under the absolute administrative purview of the client.
+
+## 4. Corporate & Strategic Inquiries
+For institutional licensing, enterprise partnership, or strategic acquisition discussions, please contact:
+
+*   **Office of the Architect**: Harish
+*   **Email**: harish@yochanenterprises.com
+*   **Emergency Secure Line**: +91 7502940397
+*   **Documentation Access**: Full technical due diligence folders (SCA Labs, eBPF Source, DLT Consensus Specs) are available upon execution of a standard NDA.
