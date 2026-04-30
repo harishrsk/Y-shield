@@ -73,8 +73,11 @@ export function QDPIMonitor() {
             <Scan className="w-6 h-6 text-orange-400" />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-white">Quantum-Deep Packet Inspection</h3>
-            <p className="text-sm text-gray-500">Active Threat Hunter — Handshake Analysis Engine</p>
+            <h3 className="text-xl font-bold text-white flex items-center gap-2">
+              Quantum-Deep Packet Inspection
+              <span className="text-xs font-mono text-orange-500/70">[BETA]</span>
+            </h3>
+            <p className="text-sm text-gray-500">Heuristic Threat Hunter — Real-time Handshake Analysis</p>
           </div>
         </div>
 

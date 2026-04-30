@@ -43,17 +43,27 @@ export function SideChannelStatus() {
       {/* Ambient glow */}
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl pointer-events-none" />
 
+      {/* Roadmap Overlay */}
+      <div className="absolute top-4 right-4 z-20">
+        <span className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold uppercase tracking-widest rounded-full">
+          Certification Roadmap
+        </span>
+      </div>
+
       <div className="relative z-10">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-3 bg-cyan-500/10 rounded-xl border border-cyan-500/20">
             <ShieldCheck className="w-6 h-6 text-cyan-400" />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-white">Side-Channel Attack Immunity</h3>
-            <p className="text-sm text-gray-500">FIPS 140-3 Level 4 Hardening Suite</p>
+            <h3 className="text-xl font-bold text-white flex items-center gap-2">
+              Side-Channel Attack Immunity
+              <span className="text-xs font-mono text-cyan-500/70">[AUDIT PENDING]</span>
+            </h3>
+            <p className="text-sm text-gray-500">Physical attack resistance hardening for PQC math</p>
           </div>
-          <div className="ml-auto px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
-            <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">All Systems Protected</span>
+          <div className="ml-auto px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full">
+            <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">Audit in Progress</span>
           </div>
         </div>
 

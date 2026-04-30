@@ -85,6 +85,13 @@ export function FederationPanel() {
       {/* Ambient glow */}
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-600/5 rounded-full blur-3xl pointer-events-none" />
 
+      {/* Roadmap Overlay */}
+      <div className="absolute top-4 right-4 z-20">
+        <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold uppercase tracking-widest rounded-full">
+          Network Roadmap
+        </span>
+      </div>
+
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
@@ -92,8 +99,11 @@ export function FederationPanel() {
               <Globe className="w-6 h-6 text-emerald-400" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white">Multi-Tenant Sovereign Sync</h3>
-              <p className="text-sm text-gray-500">Federated Control Plane — {data.totalNodes} Global Edge Nodes</p>
+              <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                Multi-Tenant Sovereign Sync
+                <span className="text-xs font-mono text-emerald-500/70">[BETA]</span>
+              </h3>
+              <p className="text-sm text-gray-500">Federated Control Plane — {data.totalNodes} Projected Edge Nodes</p>
             </div>
           </div>
           <div className="flex gap-2">

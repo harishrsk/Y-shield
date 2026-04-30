@@ -97,6 +97,13 @@ export function PerformancePanel() {
       {/* Ambient glow */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
 
+      {/* Roadmap Overlay */}
+      <div className="absolute top-4 right-4 z-20">
+        <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-bold uppercase tracking-widest rounded-full">
+          Acceleration Roadmap
+        </span>
+      </div>
+
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
@@ -104,8 +111,11 @@ export function PerformancePanel() {
               <Gauge className="w-6 h-6 text-blue-400" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white">Hardware-Accelerated Lattice Throughput</h3>
-              <p className="text-sm text-gray-500">PQC Performance Optimization Engine</p>
+              <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                Hardware-Accelerated Throughput
+                <span className="text-xs font-mono text-blue-500/70">[SCALAR ACTIVE]</span>
+              </h3>
+              <p className="text-sm text-gray-500">Vectorized optimization for high-density PQC traffic</p>
             </div>
           </div>
           <button
