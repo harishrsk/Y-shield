@@ -20,14 +20,9 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            echo "=== Pulling latest code ==="
             cd ${{ secrets.EC2_PROJECT_PATH }}
             git pull origin full-repo
-
-            echo "=== Rebuilding Docker containers ==="
             cd infra
             docker-compose down
             docker-compose up -d --build
-
-            echo "=== Deploy complete ==="
             docker-compose ps
