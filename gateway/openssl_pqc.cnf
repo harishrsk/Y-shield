@@ -1,0 +1,32 @@
+# Full OpenSSL Configuration - Yochan-Shield PQC Edition
+openssl_conf = openssl_init
+
+[openssl_init]
+providers = provider_sect
+ssl_conf = ssl_sect
+
+[provider_sect]
+default = default_sect
+oqsprovider = oqsprovider_sect
+
+[default_sect]
+activate = 1
+
+[oqsprovider_sect]
+activate = 1
+
+[ssl_sect]
+system_default = system_default_sect
+
+# Enforce the specific group names recognized by OQS-Provider
+# 2026 Hybrid Suite: ML-KEM (Kyber), FrodoKEM, and Classical ECC
+Groups = x25519_mlkem768:x25519_kyber768:p256_mlkem768:x25519:P-256
+
+# 2026 Signature Suite: ML-DSA (Dilithium), SLH-DSA (SPHINCS+), Falcon
+SignatureAlgorithms = mldsa65:slhdsa128f:falcon512:RSA-PSS+SHA256:ECDSA+SHA256
+
+[req]
+distinguished_name = req_distinguished_name
+
+[req_distinguished_name]
+CN = Yochan Shield

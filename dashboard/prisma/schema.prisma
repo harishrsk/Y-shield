@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  password     String?
+  mobileNumber String?   @unique
+  isVerified   Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  licenses     License[]
+}
+
+model OtpVerification {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  otp       String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model License {
+  id              String            @id @default(uuid())
+  userId          String
+  user            User              @relation(fields: [userId], references: [id])
+  tier            String            // Starter, Pro, Enterprise
+  licenseKey      String            @unique
+  mobileNumber    String?           // For second-factor license auth
+  isActive        Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  expiresAt       DateTime
+  protectedDomains ProtectedDomain[]
+}
+
+model ProtectedDomain {
+  id        String   @id @default(uuid())
+  licenseId String
+  license   License  @relation(fields: [licenseId], references: [id])
+  domain    String
+  createdAt DateTime @default(now())
+}
+
+model PqcEvent {
+  id                 String   @id @default(uuid())
+  eventType          String   // Handshake, Signature, Scan
+  target             String
+  algorithm          String
+  isQuantumSafe      Boolean
+  latencyMs          Int?
+  status             String
+  timestamp          DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  action    String
+  actor     String
+  details   Json
+  createdAt DateTime @default(now())
+}
