@@ -170,6 +170,55 @@ export default function Home() {
       </div>
 
       <LicenseTiers />
+
+      {/* Strategic Partnerships Section */}
+      <div className="max-w-7xl mx-auto px-6 py-24 border-t border-gray-900">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-3xl font-bold text-white mb-6">Strategic Partnerships & Acquisitions</h2>
+            <p className="text-gray-400 leading-relaxed mb-8">
+              Yochan-Shield is currently expanding its global edge node network and exploring strategic integrations with Tier-1 defense and financial institutions. We are open to discussions regarding sovereign licensing, white-label partnerships, and technical acquisitions.
+            </p>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-4 p-4 bg-gray-900/50 rounded-xl border border-gray-800">
+                <div className="text-xs text-gray-500 uppercase tracking-widest font-mono">Lead Architect</div>
+                <div className="text-white font-bold">Harish</div>
+              </div>
+              <div className="flex items-center gap-4 p-4 bg-emerald-950/10 rounded-xl border border-emerald-900/20">
+                <div className="text-xs text-emerald-500 uppercase tracking-widest font-mono">Direct Inquiry</div>
+                <a href="mailto:harish@yochanenterprises.com" className="text-white font-bold hover:text-emerald-400 transition-colors underline decoration-emerald-500/50">
+                  harish@yochanenterprises.com
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-gray-800 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-4">
+              <Shield className="w-24 h-24 text-emerald-500/5 rotate-12" />
+            </div>
+            <h4 className="text-sm font-bold text-emerald-400 uppercase tracking-widest mb-4">Institutional Access</h4>
+            <ul className="space-y-4 text-sm text-gray-300">
+              <li className="flex gap-3">
+                <span className="text-emerald-500">✓</span>
+                Full Technical Due Diligence Folders Available
+              </li>
+              <li className="flex gap-3">
+                <span className="text-emerald-500">✓</span>
+                FIPS 140-3 Level 4 Roadmap Verification
+              </li>
+              <li className="flex gap-3">
+                <span className="text-emerald-500">✓</span>
+                NQM Level 4 Sovereignty Audit Reports
+              </li>
+              <li className="flex gap-3">
+                <span className="text-emerald-500">✓</span>
+                eBPF & AVX-512 Source Code Inspection (under NDA)
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <ComplianceGenerator />
       <Footer />
 
