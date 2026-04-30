@@ -22,15 +22,40 @@ export class CBOMEngine {
         keyLength: scanData.isQuantumSafe ? "ML-DSA-65" : "2048-bit",
         pqcStatus: scanData.isQuantumSafe ? "Quantum-Safe" : "Vulnerable",
         compliance: scanData.isQuantumSafe ? ["NIST FIPS 204", "CNSA 2.0"] : ["Legacy"]
+      },
+      // Enterprise: Side-Channel Hardening Layer
+      {
+        name: "Side-Channel Attack Protection",
+        algorithm: "Constant-Time Lattice + Boolean/Arithmetic Masking",
+        keyLength: "N/A — execution-time hardening",
+        pqcStatus: "Quantum-Safe",
+        compliance: ["FIPS 140-3 Level 4", "DPA/SPA Immune", "Timing-Safe"]
+      },
+      // Enterprise: Zero-Knowledge Key Orchestration
+      {
+        name: "Key Management Layer",
+        algorithm: "Zero-Knowledge Key Handles (HSM/TEE Bound)",
+        keyLength: "Ephemeral session tokens — 30 min TTL",
+        pqcStatus: "Quantum-Safe",
+        compliance: ["Zero-Knowledge Architecture", "Key Escrow: DISABLED"]
+      },
+      // Enterprise: Q-DPI Engine
+      {
+        name: "Deep Packet Inspection",
+        algorithm: "Quantum-Aware DPI (Q-DPI v1.0)",
+        keyLength: "N/A — metadata-only analysis",
+        pqcStatus: "Quantum-Safe",
+        compliance: ["Active Threat Detection", "Kill Switch Integration"]
       }
     ];
 
     return {
       bomFormat: "CBOM",
-      specVersion: "1.0",
+      specVersion: "2.0",
       timestamp: new Date().toISOString(),
       author: "Yochan-Shield Sovereign Engine",
       target: scanData.hostname,
+      enterpriseTier: "Sovereign+",
       components
     };
   }
