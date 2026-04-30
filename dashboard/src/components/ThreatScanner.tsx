@@ -98,6 +98,7 @@ export function ThreatScanner() {
             placeholder="e.g., mail.your-bank.com"
             value={targetUrl}
             onChange={(e) => setTargetUrl(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && scanState !== "SCANNING" && targetUrl && startScan()}
             disabled={scanState === "SCANNING"}
           />
           <button
