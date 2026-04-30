@@ -34,17 +34,23 @@ export async function POST(request: Request) {
     const result = await response.json();
     
     // LIVE AUDIT PERSISTENCE: Save the scan result to the database
-    const { prisma } = require("@/lib/prisma");
-    await prisma.pqcEvent.create({
-      data: {
-        eventType: "Quantum Scan",
-        target: url,
-        algorithm: result.data.keyExchange || "Unknown",
-        isQuantumSafe: result.data.isQuantumSafe || false,
-        status: "Verified",
-        timestamp: new Date()
-      }
-    });
+    // Wrapped in its own try/catch so a DB outage never blocks the scan result.
+    try {
+      const { prisma } = require("@/lib/prisma");
+      await prisma.pqcEvent.create({
+        data: {
+          eventType: "Quantum Scan",
+          target: url,
+          algorithm: result.data?.keyExchange || "Unknown",
+          isQuantumSafe: result.data?.isQuantumSafe || false,
+          status: "Verified",
+          timestamp: new Date()
+        }
+      });
+    } catch (dbError: any) {
+      // Non-fatal: log server-side but don't block the client response
+      console.warn("[AUDIT] DB write skipped — Prisma unavailable:", dbError.message);
+    }
 
     // We pass the authentic cryptographic results directly back to the UI
     return NextResponse.json(result, { status: 200 });

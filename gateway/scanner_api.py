@@ -156,5 +156,6 @@ def deep_scan():
     }), 200
 
 if __name__ == '__main__':
-    # Hugging Face MUST use port 7860
-    app.run(host='0.0.0.0', port=7860)
+    # Use PORT env var if set (e.g. 7860 for Hugging Face), otherwise default to 5000 for Docker
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
