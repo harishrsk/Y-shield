@@ -6,15 +6,13 @@ import { useRouter } from "next/navigation";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState("");
   const [password, setPassword] = useState("");
-  const [step, setStep] = useState(1); // 1: Request OTP, 2: Verify & Password
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleRequestOtp = async (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setMessage("");
@@ -24,41 +22,15 @@ export default function Signup() {
       const res = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "Failed to request OTP");
+        throw new Error(data.error || "Failed to create account");
       }
 
       setMessage(data.message);
-      setStep(2);
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleVerify = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/auth/verify-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, otp, password }),
-      });
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Verification failed");
-      }
-
-      setMessage("Identity verified. Redirecting to login...");
       setTimeout(() => {
         router.push("/login");
       }, 2000);
@@ -97,8 +69,8 @@ export default function Signup() {
           </div>
         )}
 
-        {step === 1 ? (
-          <form className="mt-8 space-y-6" onSubmit={handleRequestOtp}>
+        <form className="mt-8 space-y-6" onSubmit={handleSignup}>
+          <div className="space-y-4">
             <div>
               <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold ml-1 mb-1 block">Email Address</label>
               <input
@@ -111,59 +83,31 @@ export default function Signup() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="group relative w-full flex justify-center py-3 border border-transparent text-sm font-bold rounded-xl text-black bg-gradient-to-r from-emerald-500 to-teal-500 hover:opacity-90 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all"
-            >
-              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Request Security Code"}
-            </button>
-          </form>
-        ) : (
-          <form className="mt-8 space-y-6" onSubmit={handleVerify}>
-            <div className="space-y-4">
-              <div>
-                <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold ml-1 mb-1 block">Verification Code</label>
-                <input
-                  type="text"
-                  required
-                  disabled={loading}
-                  className="appearance-none relative block w-full px-4 py-3 border border-gray-800 bg-black placeholder-gray-600 text-white rounded-xl focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition-all sm:text-sm font-mono tracking-[1em] text-center"
-                  placeholder="000000"
-                  maxLength={6}
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                />
-              </div>
-              <div>
-                <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold ml-1 mb-1 block">New Security Phrase</label>
-                <input
-                  type="password"
-                  required
-                  disabled={loading}
-                  className="appearance-none relative block w-full px-4 py-3 border border-gray-800 bg-black placeholder-gray-600 text-white rounded-xl focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition-all sm:text-sm"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
+            <div>
+              <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold ml-1 mb-1 block">Security Phrase</label>
+              <input
+                type="password"
+                required
+                disabled={loading}
+                className="appearance-none relative block w-full px-4 py-3 border border-gray-800 bg-black placeholder-gray-600 text-white rounded-xl focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition-all sm:text-sm"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="group relative w-full flex justify-center py-3 border border-transparent text-sm font-bold rounded-xl text-black bg-gradient-to-r from-emerald-500 to-teal-500 hover:opacity-90 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all"
-            >
-              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Verify & Initialize"}
-            </button>
-            <button
-              type="button"
-              onClick={() => setStep(1)}
-              className="w-full text-xs text-gray-500 hover:text-white transition-colors"
-            >
-              Use a different email address
-            </button>
-          </form>
-        )}
+          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="group relative w-full flex justify-center py-3 border border-transparent text-sm font-bold rounded-xl text-black bg-gradient-to-r from-emerald-500 to-teal-500 hover:opacity-90 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all"
+          >
+            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Verify & Initialize Account"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
       </div>
     </div>
   );
