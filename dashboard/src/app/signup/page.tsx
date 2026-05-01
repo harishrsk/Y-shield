@@ -75,9 +75,9 @@ export default function Signup() {
         <div className="text-center">
           <ShieldPlus className="mx-auto h-12 w-12 text-emerald-500" />
           <h2 className="mt-6 text-3xl font-extrabold text-white text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-600">
-            Provision Identity
+            Create Account
           </h2>
-          <p className="mt-2 text-sm text-gray-400 font-medium">Create your sovereign security profile</p>
+          <p className="mt-2 text-sm text-gray-400 font-medium">Join the sovereign security network</p>
           <div className="mt-4">
             <a href="/login" className="text-[10px] text-gray-600 hover:text-emerald-500 transition-colors uppercase tracking-widest font-bold">← Back to Login</a>
           </div>
@@ -100,13 +100,13 @@ export default function Signup() {
         {step === 1 ? (
           <form className="mt-8 space-y-6" onSubmit={handleRequestOtp}>
             <div>
-              <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold ml-1 mb-1 block">Institutional Email</label>
+              <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold ml-1 mb-1 block">Email Address</label>
               <input
                 type="email"
                 required
                 disabled={loading}
                 className="appearance-none relative block w-full px-4 py-3 border border-gray-800 bg-black placeholder-gray-600 text-white rounded-xl focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition-all sm:text-sm"
-                placeholder="email@organization.com"
+                placeholder="yourname@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
