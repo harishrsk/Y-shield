@@ -15,37 +15,31 @@ const handler = NextAuth({
         try {
           if (!credentials?.email || !credentials?.password) return null;
 
-          let user = await prisma.user.findUnique({
+          const user = await prisma.user.findUnique({
             where: { email: credentials.email },
           });
 
-          // Auto-Registration Logic (for Prototype demo simplicity)
           if (!user) {
-            const hashedPassword = await bcrypt.hash(credentials.password, 10);
-            user = await prisma.user.create({
-              data: {
-                email: credentials.email,
-                password: hashedPassword,
-                isVerified: true
-              },
-            });
-          } else {
-            // Validate existing user password
-            if (!user.password) {
-              console.error(`[AUTH] User ${credentials.email} found but has no password set.`);
-              return null;
-            }
-            const isValid = await bcrypt.compare(credentials.password, user.password);
-            if (!isValid) {
-              console.error(`[AUTH] Invalid password for ${credentials.email}`);
-              return null;
-            }
+            throw new Error("No account found with this email.");
+          }
+
+          if (!user.isVerified) {
+            throw new Error("Please verify your account before logging in.");
+          }
+
+          if (!user.password) {
+            throw new Error("Account is missing a password. Please contact support.");
+          }
+
+          const isValid = await bcrypt.compare(credentials.password, user.password);
+          if (!isValid) {
+            throw new Error("Invalid password.");
           }
 
           return { id: user.id, email: user.email };
-        } catch (error) {
-          console.error("[AUTH_CRITICAL_ERROR]", error);
-          return null;
+        } catch (error: any) {
+          console.error("[AUTH_ERROR]", error.message);
+          throw new Error(error.message || "Authentication failed.");
         }
       },
     }),
