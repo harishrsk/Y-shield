@@ -27,16 +27,16 @@ export const metadata: Metadata = {
     "Cybersecurity Infrastructure",
     "Yochan Enterprises"
   ],
-  authors: [{ name: "Harish", url: "https://yochanenterprises.com" }],
+  authors: [{ name: "Harish" }],
   creator: "Yochan Enterprises",
   openGraph: {
     title: "Yochan-Shield | The Future of Quantum-Safe Security",
     description: "Deployment-ready PQC gateway protecting enterprise data from future quantum attacks.",
-    url: "https://yochanenterprises.com",
+    url: "/",
     siteName: "Yochan-Shield",
     images: [
       {
-        url: "https://yochanenterprises.com/og-image.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Yochan-Shield Sovereign Security Gateway",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yochan-Shield | Post-Quantum Security Gateway",
     description: "Protecting your enterprise assets with next-generation lattice-based cryptography.",
-    images: ["https://yochanenterprises.com/og-image.png"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
