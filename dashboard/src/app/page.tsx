@@ -14,8 +14,31 @@ export default function Home() {
   const [showLaymanGuide, setShowLaymanGuide] = useState(false);
   const isSovereign = sovereignRegion.includes("Mumbai") || sovereignRegion.includes("Delhi") || sovereignRegion.includes("Pune");
   
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Yochan-Shield",
+    "operatingSystem": "Linux, Cloud, Edge",
+    "applicationCategory": "SecurityApplication",
+    "description": "High-performance Post-Quantum Cryptography (PQC) security gateway and edge router.",
+    "offers": {
+      "@type": "Offer",
+      "price": "199000.00",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Yochan Enterprises",
+      "url": "https://yochanenterprises.com"
+    }
+  };
+
   return (
     <main className="min-h-screen bg-black font-sans selection:bg-emerald-500/30">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       
       {/* Hero Section */}
       <div className="relative isolate overflow-hidden bg-gray-950 px-6 pt-14 lg:px-8">

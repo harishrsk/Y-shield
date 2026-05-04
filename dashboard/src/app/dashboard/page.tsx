@@ -41,7 +41,14 @@ export default async function UserDashboard() {
           <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-600 flex items-center">
             <ShieldAlert className="w-8 h-8 mr-3 text-emerald-500" /> Sovereign Command Center
           </h1>
-          <a href="/" className="text-sm text-gray-500 hover:text-emerald-400 transition-colors">← Back to Site</a>
+          <div className="flex gap-4 items-center">
+            <a href="/" className="text-sm text-gray-500 hover:text-emerald-400 transition-colors">← Back to Site</a>
+            <div className="h-4 w-px bg-gray-800"></div>
+            <a href="/dashboard/audit" className="text-xs font-bold text-emerald-400 border border-emerald-900/50 px-3 py-1 rounded-full bg-emerald-950/20 hover:bg-emerald-500 hover:text-black transition-all flex items-center gap-2">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+              Technical Audit Report v2.0
+            </a>
+          </div>
         </div>
         <div className="text-right">
           <div className="text-gray-400 font-mono text-sm">Operator: {session.user.email}</div>
