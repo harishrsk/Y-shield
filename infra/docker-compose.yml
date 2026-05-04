@@ -14,6 +14,8 @@ services:
     environment:
       - OPENSSL_MODULES=/opt/openssl/.openssl/lib/ossl-modules
       - OPENSSL_CONF=/opt/openssl/.openssl/ssl/openssl.cnf
+    volumes:
+      - ../docs:/opt/nginx/html/docs
 
   dashboard:
     build:
