@@ -2,7 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { ShieldAlert, Loader2, AlertCircle } from "lucide-react";
+import { ShieldCheck, Loader2, AlertCircle, Fingerprint } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
@@ -37,51 +37,53 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black bg-gradient-to-br from-black via-gray-900 to-transparent p-4">
-      <div className="max-w-md w-full space-y-8 p-10 bg-gray-950 rounded-2xl shadow-2xl shadow-emerald-500/10 border border-gray-800 transition-all">
-        <div className="text-center">
-          <ShieldAlert className="mx-auto h-12 w-12 text-emerald-500" />
-          <h2 className="mt-6 text-3xl font-extrabold text-white text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-600">
-            Secure Portal
-          </h2>
-          <p className="mt-2 text-sm text-gray-400 font-medium">Access your sovereign security tools</p>
-          <div className="mt-4">
-            <a href="/" className="text-[10px] text-gray-600 hover:text-emerald-500 transition-colors uppercase tracking-widest font-bold">← Home</a>
+    <div className="min-h-screen flex items-center justify-center bg-black bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 via-black to-black p-4">
+      <div className="max-w-md w-full space-y-8 p-12 bg-black/40 backdrop-blur-xl rounded-[32px] border border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+        {/* Subtle Background Glow */}
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/10 rounded-full blur-[80px] group-hover:bg-emerald-500/20 transition-all duration-700"></div>
+        
+        <div className="text-center relative z-10">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/5 rounded-2xl border border-white/10 mb-8">
+            <Fingerprint className="h-8 w-8 text-emerald-500" />
           </div>
+          <h2 className="text-3xl font-light tracking-tight text-white mb-2">
+            Sovereign Access
+          </h2>
+          <p className="text-sm text-gray-500 font-light">Secure gateway authentication for your PQC network</p>
         </div>
 
         {error && (
-          <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-xl flex items-center gap-3 animate-shake">
+          <div className="bg-red-500/5 border border-red-500/20 p-4 rounded-2xl flex items-center gap-3">
             <AlertCircle className="w-5 h-5 text-red-500 shrink-0" />
             <p className="text-xs text-red-400 font-medium">{error}</p>
           </div>
         )}
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm space-y-4">
-            <div>
-              <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold ml-1 mb-1 block">Email Address</label>
+        <form className="mt-12 space-y-8 relative z-10" onSubmit={handleSubmit}>
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <label className="text-[11px] uppercase tracking-[0.2em] text-gray-500 font-medium ml-1 block">Institutional Email</label>
               <input
                 id="email-address"
                 name="email"
                 type="email"
                 required
                 disabled={loading}
-                className="appearance-none relative block w-full px-4 py-3 border border-gray-800 bg-black placeholder-gray-600 text-white rounded-xl focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition-all sm:text-sm"
-                placeholder="yourname@email.com"
+                className="appearance-none relative block w-full px-5 py-4 border border-white/5 bg-white/5 placeholder-gray-700 text-white rounded-2xl focus:outline-none focus:ring-1 focus:ring-emerald-500/50 focus:bg-white/[0.07] transition-all sm:text-sm"
+                placeholder="operator@bank.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div>
-              <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold ml-1 mb-1 block">Security Phrase</label>
+            <div className="space-y-2">
+              <label className="text-[11px] uppercase tracking-[0.2em] text-gray-500 font-medium ml-1 block">Security Phrase</label>
               <input
                 id="password"
                 name="password"
                 type="password"
                 required
                 disabled={loading}
-                className="appearance-none relative block w-full px-4 py-3 border border-gray-800 bg-black placeholder-gray-600 text-white rounded-xl focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition-all sm:text-sm"
+                className="appearance-none relative block w-full px-5 py-4 border border-white/5 bg-white/5 placeholder-gray-700 text-white rounded-2xl focus:outline-none focus:ring-1 focus:ring-emerald-500/50 focus:bg-white/[0.07] transition-all sm:text-sm"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -89,23 +91,24 @@ export default function Login() {
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="pt-4">
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-3 border border-transparent text-sm font-bold rounded-xl text-black bg-gradient-to-r from-emerald-500 to-teal-500 hover:opacity-90 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all"
+              className="w-full flex justify-center py-4 px-4 border border-transparent text-sm font-bold rounded-2xl text-black bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] disabled:opacity-50 transition-all shadow-[0_10px_20px_-5px_rgba(16,185,129,0.3)]"
             >
-              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Authenticate to Edge"}
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Verify Identity"}
             </button>
-            
-            <p className="text-center text-xs text-gray-500">
-              Don&apos;t have an account?{" "}
-              <a href="/signup" className="text-emerald-400 hover:text-emerald-300 font-bold">
-                Provision New Identity
-              </a>
-            </p>
           </div>
         </form>
+
+        <div className="text-center pt-8 border-t border-white/5 mt-8">
+           <div className="flex items-center justify-center gap-2 mb-4">
+              <ShieldCheck className="w-4 h-4 text-emerald-500" />
+              <span className="text-[10px] text-gray-500 uppercase tracking-widest">Quantum-Safe Handshake Active</span>
+           </div>
+           <a href="/" className="text-[11px] text-gray-600 hover:text-gray-400 transition-colors">← Return to Gateway</a>
+        </div>
       </div>
     </div>
   );
