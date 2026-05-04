@@ -103,11 +103,18 @@ RUN /opt/openssl/.openssl/bin/openssl req -x509 -new -newkey rsa:4096 \
     -keyout /opt/nginx/conf/c_server.key -out /opt/nginx/conf/c_server.crt \
     -nodes -subj "/CN=gateway-classical" -days 365
 
-# Generate Premium Tier Merkle-Failsafe Credentials (sphincsplus128fsha256)
-# Rationale: SPHINCS+ provides a stateless hash-based failsafe. Using 'f' (fast) variant for production performance.
-RUN /opt/openssl/.openssl/bin/openssl req -x509 -new -newkey sphincsplus128fsha256 \
-    -keyout /opt/nginx/conf/premium_server.key -out /opt/nginx/conf/premium_server.crt \
-    -nodes -subj "/CN=gateway-premium" -days 365 -provider oqsprovider -provider default
+# Generate Premium Tier Merkle-Failsafe Credentials
+# Rationale: SPHINCS+ nomenclature varies by OQS version. We probe for slhdsa128f, sphincsplus128fsha256, or sphincsplus128f.
+RUN for alg in slhdsa128f sphincsplus128fsha256 sphincsplus128fsha2 sphincsplus128f; do \
+      echo "Probing algorithm: $alg"; \
+      if /opt/openssl/.openssl/bin/openssl req -x509 -new -newkey $alg \
+        -keyout /opt/nginx/conf/premium_server.key -out /opt/nginx/conf/premium_server.crt \
+        -nodes -subj "/CN=gateway-premium" -days 365 -provider oqsprovider -provider default; then \
+        echo "Successfully generated premium cert with $alg"; \
+        exit 0; \
+      fi; \
+    done; \
+    echo "ERROR: No supported SPHINCS+/SLH-DSA algorithms found in oqsprovider."; exit 1
 
 # Verify PQC Stack Integrity before final delivery
 RUN /opt/openssl/.openssl/bin/openssl list -providers -provider oqsprovider | grep -q "oqsprovider" || exit 1
