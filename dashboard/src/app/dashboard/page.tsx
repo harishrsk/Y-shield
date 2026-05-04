@@ -9,6 +9,7 @@ import { SideChannelStatus } from "@/components/SideChannelStatus";
 import { QDPIMonitor } from "@/components/QDPIMonitor";
 import { PerformancePanel } from "@/components/PerformancePanel";
 import { FederationPanel } from "@/components/FederationPanel";
+import { MerkleFailsafePanel } from "@/components/MerkleFailsafePanel";
 
 export default async function UserDashboard() {
   const session = await getServerSession();
@@ -82,6 +83,9 @@ export default async function UserDashboard() {
       </div>
 
       <div className="space-y-8">
+        {/* Feature 0: Tiered Cryptography Routing */}
+        <MerkleFailsafePanel />
+
         {/* Feature 1: Zero-Knowledge Key Infrastructure */}
         <ZeroKnowledgePanel />
 

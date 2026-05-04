@@ -103,6 +103,12 @@ RUN /opt/openssl/.openssl/bin/openssl req -x509 -new -newkey rsa:4096 \
     -keyout /opt/nginx/conf/c_server.key -out /opt/nginx/conf/c_server.crt \
     -nodes -subj "/CN=gateway-classical" -days 365
 
+# Generate Premium Tier Merkle-Failsafe Credentials (sphincsplus128fsha2)
+# Rationale: SPHINCS+ provides a stateless hash-based failsafe against lattice-math vulnerabilities.
+RUN /opt/openssl/.openssl/bin/openssl req -x509 -new -newkey sphincsplus128fsha2 \
+    -keyout /opt/nginx/conf/premium_server.key -out /opt/nginx/conf/premium_server.crt \
+    -nodes -subj "/CN=gateway-premium" -days 365 -provider oqsprovider -provider default
+
 # Verify PQC Stack Integrity before final delivery
 RUN /opt/openssl/.openssl/bin/openssl list -providers -provider oqsprovider | grep -q "oqsprovider" || exit 1
 
