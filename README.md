@@ -27,8 +27,9 @@ Yochan-Shield is currently optimized for **Sovereign+ Deployment**, featuring:
 5.  **Multi-Tenant Sovereign Sync**: Federated control plane with blockchain-anchored audit logging.
 
 ## 🛠️ Quick Start
-*   **Documentation**: [Capabilities Overview](docs/yochan_shield_capabilities.md)
-*   **Implementation Gap**: [Production Roadmap](docs/enterprise_implementation_gap.md)
+*   **External Documentation**: [Capabilities Overview](docs/external/yochan_shield_capabilities.md)
+*   **Technical Audit**: [Performance Benchmarks](docs/external/technical_audit_v2.md)
+*   **Operational Manual**: [Internal SaaS Runbook](docs/internal/SAAS_OPERATIONS.md)
 *   **Legal & Compliance**: [NIST/FIPS Compliance Statement](LEGAL.md)
 
 ---
