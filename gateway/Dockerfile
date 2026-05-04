@@ -33,7 +33,7 @@ RUN wget https://github.com/openssl/openssl/releases/download/openssl-${OPENSSL_
 RUN git clone -b ${LIBOQS_VERSION} https://github.com/open-quantum-safe/liboqs.git && \
     cd liboqs && \
     mkdir build && cd build && \
-    cmake -GNinja -DOQS_USE_OPENSSL=OFF -DOQS_CLEANSE_MEM=ON -DCMAKE_INSTALL_PREFIX=/opt/liboqs .. && \
+    cmake -GNinja -DOQS_USE_OPENSSL=OFF -DOQS_CLEANSE_MEM=ON -DOQS_ALGS_ENABLED=ALL -DCMAKE_INSTALL_PREFIX=/opt/liboqs .. && \
     ninja && \
     ninja install
 
@@ -103,10 +103,10 @@ RUN /opt/openssl/.openssl/bin/openssl req -x509 -new -newkey rsa:4096 \
     -keyout /opt/nginx/conf/c_server.key -out /opt/nginx/conf/c_server.crt \
     -nodes -subj "/CN=gateway-classical" -days 365
 
-# Generate Premium Tier Merkle-Failsafe Credentials
-# Rationale: SPHINCS+ nomenclature varies by OQS version. We probe for slhdsa128f, sphincsplus128fsha256, or sphincsplus128f.
-RUN for alg in slhdsa128f sphincsplus128fsha256 sphincsplus128fsha2 sphincsplus128f; do \
-      echo "Probing algorithm: $alg"; \
+# Generate Premium Tier High-Resilience Credentials
+# Rationale: We try Merkle-Failsafe (SLH-DSA) first. If unsupported, we fallback to ML-DSA-87 (Level 5 Lattice).
+RUN for alg in slhdsa128f sphincsplus128fsha256 sphincsplus128fsha2 mldsa87; do \
+      echo "Probing premium algorithm: $alg"; \
       if /opt/openssl/.openssl/bin/openssl req -x509 -new -newkey $alg \
         -keyout /opt/nginx/conf/premium_server.key -out /opt/nginx/conf/premium_server.crt \
         -nodes -subj "/CN=gateway-premium" -days 365 -provider oqsprovider -provider default; then \
@@ -114,7 +114,7 @@ RUN for alg in slhdsa128f sphincsplus128fsha256 sphincsplus128fsha2 sphincsplus1
         exit 0; \
       fi; \
     done; \
-    echo "ERROR: No supported SPHINCS+/SLH-DSA algorithms found in oqsprovider."; exit 1
+    echo "ERROR: Critical failure. No premium algorithms supported."; exit 1
 
 # Verify PQC Stack Integrity before final delivery
 RUN /opt/openssl/.openssl/bin/openssl list -providers -provider oqsprovider | grep -q "oqsprovider" || exit 1
