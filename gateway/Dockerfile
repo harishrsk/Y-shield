@@ -33,7 +33,7 @@ RUN wget https://github.com/openssl/openssl/releases/download/openssl-${OPENSSL_
 RUN git clone -b ${LIBOQS_VERSION} https://github.com/open-quantum-safe/liboqs.git && \
     cd liboqs && \
     mkdir build && cd build && \
-    cmake -GNinja -DOQS_USE_OPENSSL=OFF -DCMAKE_INSTALL_PREFIX=/opt/liboqs .. && \
+    cmake -GNinja -DOQS_USE_OPENSSL=OFF -DOQS_CLEANSE_MEM=ON -DCMAKE_INSTALL_PREFIX=/opt/liboqs .. && \
     ninja && \
     ninja install
 
@@ -62,10 +62,11 @@ RUN wget https://nginx.org/download/nginx-1.26.2.tar.gz && \
         --with-http_v2_module \
         --with-stream \
         --with-stream_ssl_module \
-        --with-cc-opt="-I/opt/openssl/.openssl/include -Wno-error" \
-        --with-ld-opt="-L/opt/openssl/.openssl/lib64 -L/opt/openssl/.openssl/lib -Wl,-rpath,/opt/openssl/.openssl/lib64 -Wl,-rpath,/opt/openssl/.openssl/lib" && \
+        --with-cc-opt="-I/opt/openssl/.openssl/include -Wno-error -fstack-protector-strong -D_FORTIFY_SOURCE=2 -O3" \
+        --with-ld-opt="-L/opt/openssl/.openssl/lib64 -L/opt/openssl/.openssl/lib -Wl,-rpath,/opt/openssl/.openssl/lib64 -Wl,-rpath,/opt/openssl/.openssl/lib -Wl,-z,relro,-z,now" && \
     make -j$(nproc) && \
-    make install
+    make install && \
+    mkdir -p /opt/nginx/conf/tenants.d
 
 # Final Image - PQC Secured Production Node (Ubuntu 22.04 LTS)
 FROM ubuntu:22.04
@@ -100,6 +101,9 @@ RUN /opt/openssl/.openssl/bin/openssl req -x509 -new -newkey mldsa65 \
 RUN /opt/openssl/.openssl/bin/openssl req -x509 -new -newkey rsa:4096 \
     -keyout /opt/nginx/conf/c_server.key -out /opt/nginx/conf/c_server.crt \
     -nodes -subj "/CN=gateway-classical" -days 365
+
+# Verify PQC Stack Integrity before final delivery
+RUN /opt/openssl/.openssl/bin/openssl list -providers -provider oqsprovider | grep -q "oqsprovider" || exit 1
 
 COPY nginx.conf /opt/nginx/conf/nginx.conf
 
