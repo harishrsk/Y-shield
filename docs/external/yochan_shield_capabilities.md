@@ -4,7 +4,7 @@
 Yochan-Shield is not just a simple "application"—it is a full-scale **Sovereign Post-Quantum Cryptographic (PQC) Gateway**. It operates as an advanced "Edge Node" or "Reverse Proxy," sitting between the public internet and enterprise networks to enforce mathematical immunity against future quantum computer attacks.
 
 ## 2. Core Cryptographic Capabilities
-- **Hybrid Key Exchange (ML-KEM-768):** Protects data-in-transit using Lattice-based cryptography (Draft FIPS 203) hybridized with classical X25519 to prevent "Harvest Now, Decrypt Later" (HNDL) data collection.
+- **Hybrid Key Exchange (ML-KEM-768):** Protects data-in-transit using Lattice-based cryptography (Draft FIPS 203) hybridized with classical X25519 (compliant with IETF RFC 9370 drafts) to prevent 'Harvest Now, Decrypt Later' (HNDL) data collection.
 - **Quantum-Safe Signatures (ML-DSA-65):** Verifies the digital identity of the server using advanced Dilithium algorithms (Draft FIPS 204).
 - **Automated Algorithm Downgrade Protection:** Actively blocks and rejects weak, classical RSA or ECC connection attempts from unauthorized scanners or downgrade attacks.
 
@@ -34,10 +34,9 @@ A **Stateless Key Orchestration Layer** ensuring mathematical guarantees that pr
 - **Double-Blind Authentication:** The Shield only receives temporary, session-based "Key Handles" from hardware security modules (HSMs) or Secure Enclaves.
 - **Zero Provider Access:** Yochan-Shield can never cache, log, or transmit private keys — mathematically impossible by design.
 - **Ephemeral Key Handles:** Time-limited (30-min TTL), one-way hash-derived, non-reversible opaque tokens.
-- **Key Escrow: DISABLED** — sovereignty is guaranteed even against Yochan as the provider.
 
-### 6.2 Side-Channel Attack Immunity (FIPS 140-3 Level 4)
-Hardening beyond theoretical quantum safety to **physical attack resistance**:
+### 6.2 Native Support for FIPS 140-3 Level 4 HSMs
+While the software maintains strict constant-time lattice execution to prevent timing side-channels, the architecture natively hooks into physically tamper-proof hardware security modules (HSMs) for maximum compliance.
 - **Constant-Time Lattice Math:** All ML-KEM and ML-DSA operations execute in fixed time regardless of key bits, eliminating timing-based key extraction.
 - **Blinding Countermeasures:** Random blinding factors applied during key encapsulation to mask power signatures against DPA/SPA attacks.
 - **Boolean & Arithmetic Masking:** All intermediate lattice values are masked, preventing electromagnetic (EM) side-channel leakage.
@@ -45,16 +44,15 @@ Hardening beyond theoretical quantum safety to **physical attack resistance**:
 
 ### 6.3 Quantum-Deep Packet Inspection (Q-DPI)
 An **Active Threat Hunter** operating at the network edge:
+- **Rogue CA Immunity (CT Log Hardening):** Validates and preserves Signed Certificate Timestamps (SCTs) even during heavy 30KB+ fragmented Merkle-tree handshakes. Instantly detects and blackholes connections attempting to serve unlogged, forged certificates, enforcing zero-trust identity validation.
 - **Handshake Metadata Analysis:** Inspects TLS handshake entropy, algorithm negotiation, and certificate chain before connection establishment.
 - **Anomaly Detection Matrix:** Identifies protocol downgrade attempts, handshake tampering, algorithm anomalies, certificate forgery, and replay attacks.
-- **Threat Scoring Engine:** 0-100 composite score with automatic threat level classification (CLEAR → LOW → MEDIUM → HIGH → CRITICAL).
 - **Kill Switch Auto-Trigger:** CRITICAL threats automatically invoke the Sovereign Kill Switch and record to the immutable audit chain.
 
 ### 6.4 Hardware-Accelerated Lattice Throughput
 Making PQC mathematically invisible to the user:
 - **AVX-512 / AVX2 Vectorization:** Parallel matrix-vector multiplications optimized for modern CPU instruction sets.
 - **Live Benchmark Engine:** Real-time measurement of handshake latency with target <0.5ms overhead per connection.
-- **FPGA Offloading:** Standby capability for enterprise high-traffic nodes requiring 100k+ simultaneous quantum-safe handshakes/second.
 - **Throughput Projections:** Baseline → AVX2 (2.8x) → AVX-512 (5.2x) → FPGA (18x) acceleration tiers.
 
 ### 6.5 Multi-Tenant Sovereign Sync (Federated Control Plane)
@@ -62,13 +60,12 @@ Global management with local enforcement:
 - **Distributed Edge Nodes:** Each global office runs its own cryptographic enforcement node — no central data routing.
 - **Centralized Policy Push:** Administrators manage security policies globally and sync to all edge nodes in seconds.
 - **Blockchain-Anchored Audit Log:** SHA-256 hash-chained immutable record of every security event, policy change, and Kill Switch trigger. Cryptographically verifiable without external dependencies.
-- **NQM Level 4 Compliance:** Immutable audit trail provides third-party verifiable proof that the system was secured within 1 second of threat detection.
-- **Data Sovereignty:** Cryptographic keys never cross regional boundaries — mathematically enforced at the edge.
 
 ---
 
 ## 7. Enterprise SaaS Hardening (v2.0)
 The Yochan-Shield "Gold Image" is now hardened for immediate deployment into high-security financial and governmental sectors:
+- **Active-Passive High Availability (HA):** Supports seamless integration with standard Layer 4 load balancers and VRRP (Virtual Router Redundancy Protocol). If a primary edge node experiences catastrophic failure, cryptographic traffic automatically reroutes to a hot-standby node in milliseconds, ensuring zero service degradation for the client.
 - **SIEM-Native Telemetry**: Real-time structured JSON logging for seamless ingestion into Splunk, Datadog, and institutional SOCs.
 - **DDoS Handshake Protection**: Intelligent rate-limiting zones (`limit_req`) designed to mitigate asymmetric lattice-math exhaustion attacks.
 - **Memory Safety Guardrails**: Build-time enforcement of stack protection and zero-knowledge memory scrubbing (`explicit_bzero`).
