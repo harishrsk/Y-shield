@@ -78,7 +78,8 @@ RUN apt-get update && apt-get install -y \
     python3-flask \
     python3-flask-cors \
     curl \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* && \
+    mkdir -p /opt/nginx/conf/tenants.d /opt/nginx/logs
 
 # Copy built artifacts
 COPY --from=builder /opt/openssl/.openssl /opt/openssl/.openssl
