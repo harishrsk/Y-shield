@@ -34,6 +34,27 @@ export default function CheckoutPage() {
         return;
       }
 
+      if (data.isDemo) {
+        alert("DEMO MODE: Bypassing Razorpay. Simulating successful payment...");
+        const verifyRes = await fetch("/api/webhooks/razorpay", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            razorpay_payment_id: `pay_demo_${Date.now()}`,
+            razorpay_order_id: data.order.id,
+            razorpay_signature: "demo_signature",
+            userEmail: session?.user?.email,
+            tier: selectedTier
+          })
+        });
+        const verifyData = await verifyRes.json();
+        if(verifyData.success) {
+          alert(`Payment Successful (Demo)! Generated License: ${verifyData.licenseKey}`);
+          window.location.href = "/dashboard";
+        }
+        return;
+      }
+
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_mock_key",
         amount: data.order.amount,
