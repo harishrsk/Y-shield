@@ -1,8 +1,10 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { Shield } from "lucide-react";
+import { Shield, Check, Zap, Globe, Lock } from "lucide-react";
 import Script from "next/script";
+import { useState } from "react";
+import { TIERS } from "@/lib/auth_license";
 
 declare global {
   interface Window {
@@ -12,10 +14,18 @@ declare global {
 
 export default function CheckoutPage() {
   const { data: session } = useSession();
+  const [selectedTier, setSelectedTier] = useState<string>("Professional");
+
+  const tierData = (TIERS as any)[selectedTier] || TIERS.Professional;
+  const numericPrice = parseInt(tierData.priceYearly.replace(/[^\d]/g, "")) || 0;
 
   const handlePurchase = async () => {
     try {
-      const res = await fetch("/api/create-razorpay-order", { method: "POST" });
+      const res = await fetch("/api/create-razorpay-order", { 
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tier: selectedTier, amount: numericPrice })
+      });
       const data = await res.json();
       
       if (!data.success) {
@@ -28,10 +38,9 @@ export default function CheckoutPage() {
         amount: data.order.amount,
         currency: data.order.currency,
         name: "Yochan-Shield",
-        description: "Sovereign PQC License (1 Year)",
+        description: `Sovereign PQC ${selectedTier} License`,
         order_id: data.order.id,
         handler: async function (response: any) {
-          // Send payment success to our webhook/verification endpoint
           const verifyRes = await fetch("/api/webhooks/razorpay", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -39,7 +48,8 @@ export default function CheckoutPage() {
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_order_id: response.razorpay_order_id,
               razorpay_signature: response.razorpay_signature,
-              userEmail: session?.user?.email
+              userEmail: session?.user?.email,
+              tier: selectedTier
             })
           });
           const verifyData = await verifyRes.json();
@@ -71,26 +81,63 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-black text-white p-12">
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
-      <div className="max-w-2xl mx-auto bg-gray-900 border border-gray-800 rounded-xl p-8 shadow-2xl">
-        <h1 className="text-3xl font-bold flex items-center mb-6 text-emerald-400">
-          <Shield className="mr-3" /> Secure Checkout
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-light flex items-center mb-12 text-white tracking-tight">
+          <Shield className="mr-4 text-emerald-500 w-10 h-10" /> Provision Sovereign Infrastructure
         </h1>
-        <p className="text-gray-400 mb-8">
-          Logged in as: <span className="font-mono text-emerald-200">{session?.user?.email || "Guest"}</span>
-        </p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          {Object.values(TIERS).map((tier: any) => (
+            <div 
+              key={tier.tier}
+              onClick={() => setSelectedTier(tier.tier)}
+              className={`relative p-8 rounded-3xl border transition-all cursor-pointer ${
+                selectedTier === tier.tier 
+                ? "bg-emerald-500/10 border-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.1)]" 
+                : "bg-gray-900/50 border-white/5 hover:border-white/20"
+              }`}
+            >
+              {selectedTier === tier.tier && (
+                <div className="absolute top-4 right-4 bg-emerald-500 text-black p-1 rounded-full">
+                  <Check className="w-4 h-4" />
+                </div>
+              )}
+              <h3 className="text-xl font-bold mb-1">{tier.tier}</h3>
+              <p className="text-3xl font-light text-white mb-6">{tier.priceYearly}</p>
+              
+              <ul className="space-y-3 mb-8">
+                {tier.features.slice(0, 4).map((f: string) => (
+                  <li key={f} className="text-xs text-gray-400 flex items-center gap-2">
+                    <div className="w-1 h-1 bg-emerald-500 rounded-full" /> {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
         
-        <div className="bg-gray-950 rounded p-6 mb-8 border border-gray-800">
-          <h3 className="text-xl font-semibold mb-2">Yochan-Shield 'Pro' Tier</h3>
-          <p className="text-gray-500 mb-4">50 Post-Quantum Tunnels + AWS Deployment integration</p>
-          <p className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">₹2,10,000<span className="text-lg text-gray-500"> /year</span></p>
+        <div className="bg-gray-900 border border-white/5 rounded-[32px] p-10 shadow-2xl">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-widest mb-2 font-bold">Selected Configuration</p>
+              <h3 className="text-2xl font-bold text-white mb-1">Yochan-Shield {selectedTier}</h3>
+              <p className="text-sm text-gray-400">Quantum-Safe Handshake • {tierData.maxTunnels} Tunnels • FIPS 203 Compliance</p>
+            </div>
+            <div className="text-center md:text-right">
+              <p className="text-4xl font-light text-emerald-400 mb-4">{tierData.priceYearly}</p>
+              <button 
+                onClick={handlePurchase}
+                className="px-12 py-4 text-lg font-bold text-black bg-emerald-500 rounded-2xl hover:bg-emerald-400 active:scale-95 transition-all shadow-xl shadow-emerald-500/20"
+              >
+                Execute Provisioning
+              </button>
+            </div>
+          </div>
         </div>
 
-        <button 
-          onClick={handlePurchase}
-          className="w-full py-4 text-lg font-bold text-black bg-gradient-to-r from-emerald-400 to-teal-500 rounded-lg hover:opacity-90"
-        >
-          Pay with Razorpay
-        </button>
+        <p className="mt-8 text-center text-[10px] text-gray-600 uppercase tracking-widest font-mono">
+          Immutable Audit Log Anchored • Encrypted via x25519_mlkem768
+        </p>
       </div>
     </div>
   );

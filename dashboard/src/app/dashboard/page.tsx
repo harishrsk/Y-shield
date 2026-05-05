@@ -10,6 +10,8 @@ import { QDPIMonitor } from "@/components/QDPIMonitor";
 import { PerformancePanel } from "@/components/PerformancePanel";
 import { FederationPanel } from "@/components/FederationPanel";
 import { MerkleFailsafePanel } from "@/components/MerkleFailsafePanel";
+import { LogoutButton } from "@/components/LogoutButton";
+import { LaymanGuide } from "@/components/LaymanGuide";
 
 export default async function UserDashboard() {
   const session = await getServerSession();
@@ -37,23 +39,28 @@ export default async function UserDashboard() {
 
   return (
     <div className="min-h-screen bg-black text-white p-12">
-      <div className="flex justify-between items-center mb-12 border-b border-gray-800 pb-6">
-        <div className="flex items-center gap-6">
+      <div className="flex justify-between items-start mb-12 border-b border-gray-800 pb-8">
+        <div className="flex flex-col gap-6">
           <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-600 flex items-center">
             <ShieldAlert className="w-8 h-8 mr-3 text-emerald-500" /> Sovereign Command Center
           </h1>
           <div className="flex gap-4 items-center">
             <a href="/" className="text-sm text-gray-500 hover:text-emerald-400 transition-colors">← Back to Site</a>
             <div className="h-4 w-px bg-gray-800"></div>
-            <a href="/dashboard/audit" className="text-xs font-bold text-emerald-400 border border-emerald-900/50 px-3 py-1 rounded-full bg-emerald-950/20 hover:bg-emerald-500 hover:text-black transition-all flex items-center gap-2">
-              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-              Technical Audit Report v2.0
+            <LaymanGuide />
+            <div className="h-4 w-px bg-gray-800"></div>
+            <a href="/dashboard/audit" className="text-[10px] font-bold text-emerald-400 border border-emerald-900/50 px-3 py-1 rounded-full bg-emerald-950/20 hover:bg-emerald-500 hover:text-black transition-all flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+              Technical Audit Report
             </a>
           </div>
         </div>
-        <div className="text-right">
-          <div className="text-gray-400 font-mono text-sm">Operator: {session.user.email}</div>
-          <div className="text-emerald-500 font-mono text-xs">Auth Mobile: {user?.mobileNumber || "Not Linked"}</div>
+        <div className="flex flex-col items-end gap-4">
+          <div className="text-right">
+            <div className="text-gray-400 font-mono text-sm">{session.user.email}</div>
+            <div className="text-emerald-500 font-mono text-xs uppercase tracking-widest mt-1">Sovereign Operator</div>
+          </div>
+          <LogoutButton />
         </div>
       </div>
       

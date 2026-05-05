@@ -60,7 +60,7 @@ export function LicenseTiers() {
               </div>
 
               <a
-                href="/login"
+                href="/checkout"
                 className="mt-12 block w-full py-4 px-6 rounded-2xl text-center text-sm font-bold transition-all bg-white/5 border border-white/10 text-white hover:bg-emerald-500 hover:text-black hover:border-emerald-500 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.5)]"
               >
                 Provision Account
