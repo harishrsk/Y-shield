@@ -28,8 +28,7 @@ export default function Home() {
     },
     "author": {
       "@type": "Organization",
-      "name": "Yochan Enterprises",
-      "url": "https://yochanenterprises.com"
+      "name": "Yochan Enterprises"
     }
   };
 
