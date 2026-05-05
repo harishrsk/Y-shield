@@ -17,7 +17,8 @@ export default function CheckoutPage() {
   const [selectedTier, setSelectedTier] = useState<string>("Professional");
 
   const tierData = (TIERS as any)[selectedTier] || TIERS.Professional;
-  const numericPrice = parseInt(tierData.priceYearly.replace(/[^\d]/g, "")) || 0;
+  const priceString = tierData?.priceYearly || "₹0";
+  const numericPrice = parseInt(priceString.replace(/[^\d]/g, "")) || 0;
 
   const handlePurchase = async () => {
     try {

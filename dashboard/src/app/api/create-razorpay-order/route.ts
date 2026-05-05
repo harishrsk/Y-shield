@@ -14,13 +14,16 @@ export async function POST(request: Request) {
       key_secret: process.env.RAZORPAY_KEY_SECRET || 'mock_secret_do_not_use_in_prod',
     });
 
+    const { tier, amount } = await request.json();
+    const finalAmount = (amount || 210000) * 100; // default to Pro if not provided
+
     const options = {
-      amount: 210000 * 100, // ₹2,10,000 in paise
+      amount: finalAmount,
       currency: "INR",
       receipt: `receipt_yochan_${Date.now()}`,
       notes: {
         userEmail: session.user.email,
-        tier: "Pro"
+        tier: tier || "Professional"
       }
     };
 

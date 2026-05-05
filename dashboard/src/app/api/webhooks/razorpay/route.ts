@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 
 export async function POST(request: Request) {
   try {
-    const { razorpay_payment_id, razorpay_order_id, razorpay_signature, userEmail } = await request.json();
+    const { razorpay_payment_id, razorpay_order_id, razorpay_signature, userEmail, tier } = await request.json();
 
     const secret = process.env.RAZORPAY_KEY_SECRET || 'mock_secret_do_not_use_in_prod';
     
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     const license = await prisma.license.create({
       data: {
         userId: user.id,
-        tier: "Pro",
+        tier: tier || "Professional",
         licenseKey: newLicenseKey,
         expiresAt: expiresAt,
         isActive: true
