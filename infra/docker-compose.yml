@@ -16,6 +16,7 @@ services:
       - OPENSSL_CONF=/opt/openssl/.openssl/ssl/openssl.cnf
     volumes:
       - ../docs:/opt/nginx/html/docs
+      - /etc/letsencrypt:/etc/letsencrypt:ro
 
   dashboard:
     build:
