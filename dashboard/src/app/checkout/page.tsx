@@ -13,8 +13,13 @@ declare global {
 }
 
 export default function CheckoutPage() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [selectedTier, setSelectedTier] = useState<string>("Professional");
+
+  if (status === "unauthenticated") {
+    window.location.href = "/login";
+    return null;
+  }
 
   const tierData = (TIERS as any)[selectedTier] || TIERS.Professional;
   const priceString = tierData?.priceYearly || "₹0";
