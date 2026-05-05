@@ -25,7 +25,7 @@ services:
       - "3000:3000"
     restart: always
     environment:
-      - NEXTAUTH_URL=https://localhost
+      - NEXTAUTH_URL=https://yochanenterprises.com
       - NEXTAUTH_SECRET=a-super-secret-key-for-quantum-licenses
       - DATABASE_URL=postgresql://postgres.rgtfpmyjpxxwcikwidgl:Pass%40supabase@aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true
       - DIRECT_URL=postgresql://postgres.rgtfpmyjpxxwcikwidgl:Pass%40supabase@aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres

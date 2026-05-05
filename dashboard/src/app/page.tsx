@@ -7,6 +7,7 @@ import { ThreatScanner } from "@/components/ThreatScanner";
 import { AuditTrail } from "@/components/AuditTrail";
 import { useState } from "react";
 import { Shield } from "lucide-react";
+import { NavHeader } from "@/components/NavHeader";
 
 export default function Home() {
   const [sovereignRegion, setSovereignRegion] = useState("AWS Mumbai (ap-south-1)");
@@ -34,6 +35,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-black font-sans selection:bg-emerald-500/30">
+      <NavHeader />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
