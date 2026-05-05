@@ -13,7 +13,7 @@ export function LaymanGuide() {
         className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-emerald-400 border border-emerald-900/50 rounded-full bg-emerald-950/10 hover:bg-emerald-500 hover:text-black transition-all"
       >
         <BookOpen className="w-3 h-3" />
-        Layman's Guide
+        Explain Like I'm 5 (ELI5) 🤔
       </button>
 
       {isOpen && (
@@ -22,7 +22,7 @@ export function LaymanGuide() {
             <div className="p-8 border-b border-white/5 flex justify-between items-center">
               <div>
                 <h3 className="text-2xl font-bold text-white flex items-center gap-3">
-                  <Shield className="text-emerald-500" /> Quantum Security for Everyone
+                  <Shield className="text-emerald-500" /> Explain Like I'm 5: Quantum Security 🍼
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">Understanding the Yochan-Shield upgrade in 2 minutes.</p>
               </div>

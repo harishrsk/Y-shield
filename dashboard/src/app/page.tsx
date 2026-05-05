@@ -73,7 +73,7 @@ export default function Home() {
               className="text-xs font-mono text-emerald-500/70 hover:text-emerald-400 transition-colors uppercase tracking-widest flex items-center justify-center gap-2 mx-auto"
             >
               <span className="w-4 h-px bg-emerald-500/30"></span>
-              What is this? (The Layman&apos;s Guide)
+              Wait, how does this work? (Explain Like I'm 5) 🤔
               <span className="w-4 h-px bg-emerald-500/30"></span>
             </button>
           </div>
@@ -93,7 +93,9 @@ export default function Home() {
         </div>
       </div>
 
-      <ThreatScanner />
+      <div id="scanner">
+        <ThreatScanner />
+      </div>
       
       {/* Data Sovereignty Lock Section */}
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -247,7 +249,9 @@ export default function Home() {
         </div>
       </div>
 
-      <LicenseTiers />
+      <div id="pricing">
+        <LicenseTiers />
+      </div>
 
       {/* Strategic Partnerships Section */}
       <div className="max-w-7xl mx-auto px-6 py-24 border-t border-gray-900">
@@ -297,7 +301,9 @@ export default function Home() {
         </div>
       </div>
 
-      <ComplianceGenerator />
+      <div id="compliance">
+        <ComplianceGenerator />
+      </div>
       <Footer />
 
     </main>
