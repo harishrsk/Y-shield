@@ -105,7 +105,7 @@ export function ThreatScanner() {
            <div className="absolute inset-0 bg-emerald-900/10 pointer-events-none animate-pulse z-0" />
         )}
 
-        <div className="relative z-10 flex gap-4 mb-8">
+        <div className="relative z-10 flex flex-col md:flex-row gap-4 mb-8">
           <input
             type="text"
             className="flex-1 bg-gray-900 border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-red-500 font-mono"
@@ -118,7 +118,7 @@ export function ThreatScanner() {
           <button
             onClick={startScan}
             disabled={scanState === "SCANNING" || !targetUrl}
-            className="bg-red-600 hover:bg-red-500 disabled:opacity-50 text-white font-bold py-3 px-8 rounded-lg flex items-center gap-2 transition"
+            className="bg-red-600 hover:bg-red-500 disabled:opacity-50 text-white font-bold py-3 px-8 rounded-lg flex items-center justify-center gap-2 transition"
           >
             {scanState === "SCANNING" ? "Scanning Network..." : <><TerminalSquare className="w-5 h-5"/> Deep Scan Host</>}
           </button>

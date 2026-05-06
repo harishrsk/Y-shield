@@ -78,11 +78,11 @@ export default function Home() {
             </button>
           </div>
           
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a href="/checkout" className="rounded-md bg-emerald-500 px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400">
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-x-6">
+            <a href="/checkout" className="w-full sm:w-auto rounded-md bg-emerald-500 px-6 py-3 text-sm font-semibold text-black shadow-sm hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400">
               Purchase License
             </a>
-            <a href="/dashboard" className="text-sm font-semibold leading-6 text-white hover:text-emerald-300 transition-colors">
+            <a href="/dashboard" className="w-full sm:w-auto text-sm font-semibold leading-6 text-white hover:text-emerald-300 transition-colors">
               Access Client Portal <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -113,7 +113,7 @@ export default function Home() {
           </div>
           <button 
             onClick={() => setShowSovereignModal(true)}
-            className={`px-6 py-3 text-white font-bold rounded-lg transition-all shadow-[0_0_20px_rgba(0,0,0,0.3)] ${isSovereign ? 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-500/30' : 'bg-orange-600 hover:bg-orange-500 shadow-orange-500/30'}`}
+            className={`w-full md:w-auto px-6 py-3 text-white font-bold rounded-lg transition-all shadow-[0_0_20px_rgba(0,0,0,0.3)] ${isSovereign ? 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-500/30' : 'bg-orange-600 hover:bg-orange-500 shadow-orange-500/30'}`}
           >
             Configure Sovereignty Policy
           </button>
@@ -123,8 +123,8 @@ export default function Home() {
       {/* Sovereignty Policy Modal */}
       {showSovereignModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
-          <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8 max-w-lg w-full shadow-2xl">
-            <h3 className="text-2xl font-bold text-white mb-4">Select Physical Data Center</h3>
+          <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Select Physical Data Center</h3>
             <p className="text-gray-400 mb-6 text-sm">
               Routing cryptography to a foreign data center will instantly revoke NQM Level 4 (Sovereign) compliance.
             </p>

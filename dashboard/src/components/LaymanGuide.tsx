@@ -18,10 +18,10 @@ export function LaymanGuide() {
 
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
-          <div className="bg-gray-950 border border-white/10 rounded-[32px] max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col shadow-2xl shadow-emerald-500/10">
-            <div className="p-8 border-b border-white/5 flex justify-between items-center">
+          <div className="bg-gray-950 border border-white/10 rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-hidden flex flex-col shadow-2xl shadow-emerald-500/10">
+            <div className="p-6 sm:p-8 border-b border-white/5 flex justify-between items-start sm:items-center gap-4">
               <div>
-                <h3 className="text-2xl font-bold text-white flex items-center gap-3">
+                <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-3">
                   <Shield className="text-emerald-500" /> Explain Like I'm 5: Quantum Security 🍼
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">Understanding the Yochan-Shield upgrade in 2 minutes.</p>
@@ -31,7 +31,7 @@ export function LaymanGuide() {
               </button>
             </div>
 
-            <div className="p-8 overflow-y-auto space-y-8">
+            <div className="p-6 sm:p-8 overflow-y-auto space-y-8">
               <section>
                 <h4 className="text-emerald-400 font-bold uppercase tracking-widest text-xs mb-4">The Challenge</h4>
                 <p className="text-gray-300 leading-relaxed">

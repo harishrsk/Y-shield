@@ -106,7 +106,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white p-12">
+    <div className="min-h-screen bg-black text-white p-4 md:p-12">
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-light flex items-center mb-12 text-white tracking-tight">
@@ -143,7 +143,7 @@ export default function CheckoutPage() {
           ))}
         </div>
         
-        <div className="bg-gray-900 border border-white/5 rounded-[32px] p-10 shadow-2xl">
+        <div className="bg-gray-900 border border-white/5 rounded-[32px] p-6 sm:p-10 shadow-2xl">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div>
               <p className="text-xs text-gray-500 uppercase tracking-widest mb-2 font-bold">Selected Configuration</p>
@@ -154,7 +154,7 @@ export default function CheckoutPage() {
               <p className="text-4xl font-light text-emerald-400 mb-4">{tierData.priceYearly}</p>
               <button 
                 onClick={handlePurchase}
-                className="px-12 py-4 text-lg font-bold text-black bg-emerald-500 rounded-2xl hover:bg-emerald-400 active:scale-95 transition-all shadow-xl shadow-emerald-500/20"
+                className="w-full md:w-auto px-12 py-4 text-lg font-bold text-black bg-emerald-500 rounded-2xl hover:bg-emerald-400 active:scale-95 transition-all shadow-xl shadow-emerald-500/20"
               >
                 Execute Provisioning
               </button>

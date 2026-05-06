@@ -38,8 +38,8 @@ export default async function UserDashboard() {
   const activeLicenses = user?.licenses || [];
 
   return (
-    <div className="min-h-screen bg-black text-white p-12">
-      <div className="flex justify-between items-start mb-12 border-b border-gray-800 pb-8">
+    <div className="min-h-screen bg-black text-white p-4 md:p-12">
+      <div className="flex flex-col md:flex-row justify-between items-start mb-12 border-b border-gray-800 pb-8 gap-8 md:gap-0">
         <div className="flex flex-col gap-6">
           <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-600 flex items-center">
             <ShieldAlert className="w-8 h-8 mr-3 text-emerald-500" /> Sovereign Command Center
@@ -55,8 +55,8 @@ export default async function UserDashboard() {
             </a>
           </div>
         </div>
-        <div className="flex flex-col items-end gap-4">
-          <div className="text-right">
+        <div className="flex flex-col items-start md:items-end gap-4 w-full md:w-auto">
+          <div className="text-left md:text-right">
             <div className="text-gray-400 font-mono text-sm">{session.user.email}</div>
             <div className="text-emerald-500 font-mono text-xs uppercase tracking-widest mt-1">Sovereign Operator</div>
           </div>
@@ -124,7 +124,7 @@ export default async function UserDashboard() {
             </p>
           </div>
           
-          <div className="flex gap-12">
+          <div className="flex flex-col sm:flex-row gap-8 md:gap-12">
             <div>
               <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Technical Support</div>
               <a href="mailto:harish@yochanenterprises.com" className="text-sm text-gray-400 hover:text-emerald-400 transition-colors font-mono">
