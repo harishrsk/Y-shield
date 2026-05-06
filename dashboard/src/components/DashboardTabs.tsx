@@ -23,28 +23,30 @@ export function DashboardTabs({ activeLicenses }: DashboardTabsProps) {
   return (
     <div className="w-full">
       {/* Top Level Tab Navigation */}
-      <div className="flex flex-wrap gap-4 mb-12 border-b border-gray-900 pb-6">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-3 px-6 py-4 rounded-2xl font-bold transition-all duration-300 group ${
-              activeTab === tab.id
-                ? `bg-${tab.color}-500/10 text-${tab.color}-400 border border-${tab.color}-500/30 shadow-[0_0_20px_rgba(0,0,0,0.5)]`
-                : "bg-transparent text-gray-500 hover:text-gray-300 hover:bg-gray-900/50"
-            }`}
-          >
-            <tab.icon className={`w-5 h-5 ${activeTab === tab.id ? `text-${tab.color}-400` : "text-gray-600 group-hover:text-gray-400"}`} />
-            <span className="tracking-tight">{tab.label}</span>
-            {tab.id === "licenses" && activeLicenses.length > 0 && (
-              <span className={`ml-2 px-2 py-0.5 text-[10px] rounded-full ${
-                activeTab === "licenses" ? "bg-blue-500 text-black" : "bg-gray-800 text-gray-400"
-              }`}>
-                {activeLicenses.length}
-              </span>
-            )}
-          </button>
-        ))}
+      <div className="flex overflow-x-auto pb-6 mb-8 border-b border-gray-900 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth">
+        <div className="flex gap-4 min-w-max">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center gap-3 px-5 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl font-bold transition-all duration-300 group ${
+                activeTab === tab.id
+                  ? `bg-${tab.color}-500/10 text-${tab.color}-400 border border-${tab.color}-500/30 shadow-[0_0_20px_rgba(0,0,0,0.5)]`
+                  : "bg-transparent text-gray-500 hover:text-gray-300 hover:bg-gray-900/50"
+              }`}
+            >
+              <tab.icon className={`w-4 h-4 md:w-5 md:h-5 ${activeTab === tab.id ? `text-${tab.color}-400` : "text-gray-600 group-hover:text-gray-400"}`} />
+              <span className="tracking-tight text-sm md:text-base whitespace-nowrap">{tab.label}</span>
+              {tab.id === "licenses" && activeLicenses.length > 0 && (
+                <span className={`ml-2 px-2 py-0.5 text-[10px] rounded-full ${
+                  activeTab === "licenses" ? "bg-blue-500 text-black" : "bg-gray-800 text-gray-400"
+                }`}>
+                  {activeLicenses.length}
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Tab Content Area */}

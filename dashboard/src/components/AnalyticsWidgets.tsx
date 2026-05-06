@@ -23,12 +23,12 @@ const COLORS = ['#10b981', '#ef4444'];
 export function AnalyticsWidgets() {
   return (
     <div className="mt-12 space-y-8 relative overflow-hidden">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-          <Activity className="text-emerald-500" /> Global Network Intelligence
-          <span className="text-[10px] bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Beta</span>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0">
+        <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+          <Activity className="text-emerald-500 shrink-0" /> Global Network Intelligence
+          <span className="text-[10px] bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-2 py-0.5 rounded-full uppercase tracking-widest hidden xs:inline-block">Beta</span>
         </h2>
-        <div className="text-xs text-gray-500 font-mono italic">
+        <div className="text-[10px] md:text-xs text-gray-500 font-mono italic">
           Aggregated Telemetry v1.0 — Node-Specific Integration Pending
         </div>
       </div>

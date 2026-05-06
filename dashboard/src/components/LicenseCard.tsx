@@ -16,14 +16,14 @@ export function LicenseCard({ lic }: { lic: any }) {
         </div>
       )}
       
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 shadow-2xl">
-        <div className="flex justify-between items-start mb-6 border-b border-gray-800 pb-4">
-          <h2 className="text-xl font-semibold flex items-center">
-            <Key className="mr-3 text-emerald-500" /> {lic.tier} License Details
+      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 md:p-8 shadow-2xl">
+        <div className="flex flex-col md:flex-row justify-between items-start mb-6 border-b border-gray-800 pb-4 gap-4 md:gap-0">
+          <h2 className="text-lg md:text-xl font-semibold flex items-center">
+            <Key className="mr-3 text-emerald-500 shrink-0" /> {lic.tier} License Details
           </h2>
-          <div className="text-right">
-            <p className="text-xs text-gray-500">Issued: {new Date(lic.createdAt).toLocaleDateString()}</p>
-            <p className={`text-xs font-bold ${daysLeft < 30 ? 'text-red-500' : 'text-emerald-500'}`}>
+          <div className="text-left md:text-right">
+            <p className="text-[10px] md:text-xs text-gray-500">Issued: {new Date(lic.createdAt).toLocaleDateString()}</p>
+            <p className={`text-[10px] md:text-xs font-bold ${daysLeft < 30 ? 'text-red-500' : 'text-emerald-500'}`}>
               Expires: {new Date(lic.expiresAt).toLocaleDateString()} ({daysLeft} days left)
             </p>
           </div>
