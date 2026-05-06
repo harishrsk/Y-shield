@@ -21,24 +21,24 @@ export function DashboardTabs({ activeLicenses }: DashboardTabsProps) {
   ] as const;
 
   return (
-    <div className="w-full">
-      {/* Top Level Tab Navigation */}
-      <div className="flex overflow-x-auto pb-6 mb-8 border-b border-gray-900 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth">
-        <div className="flex gap-4 min-w-max">
+    <div className="w-full pb-20 md:pb-0">
+      {/* Tab Navigation - Mobile First Approach */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-t border-gray-800 p-2 md:relative md:bg-transparent md:backdrop-blur-none md:border-t-0 md:p-0 md:mb-12 md:border-b md:pb-6">
+        <div className="flex justify-around md:justify-start gap-1 md:gap-4 max-w-7xl mx-auto">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-3 px-5 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl font-bold transition-all duration-300 group ${
+              className={`flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-2 md:px-6 md:py-4 rounded-xl md:rounded-2xl font-bold transition-all duration-300 group flex-1 md:flex-none ${
                 activeTab === tab.id
-                  ? `bg-${tab.color}-500/10 text-${tab.color}-400 border border-${tab.color}-500/30 shadow-[0_0_20px_rgba(0,0,0,0.5)]`
+                  ? `bg-${tab.color}-500/10 text-${tab.color}-400 border border-${tab.color}-500/30 md:shadow-[0_0_20px_rgba(0,0,0,0.5)]`
                   : "bg-transparent text-gray-500 hover:text-gray-300 hover:bg-gray-900/50"
               }`}
             >
-              <tab.icon className={`w-4 h-4 md:w-5 md:h-5 ${activeTab === tab.id ? `text-${tab.color}-400` : "text-gray-600 group-hover:text-gray-400"}`} />
-              <span className="tracking-tight text-sm md:text-base whitespace-nowrap">{tab.label}</span>
+              <tab.icon className={`w-5 h-5 md:w-5 md:h-5 ${activeTab === tab.id ? `text-${tab.color}-400` : "text-gray-600 group-hover:text-gray-400"}`} />
+              <span className="text-[10px] md:text-base font-bold tracking-tight whitespace-nowrap uppercase md:normal-case">{tab.label.split(" ")[1] || tab.label}</span>
               {tab.id === "licenses" && activeLicenses.length > 0 && (
-                <span className={`ml-2 px-2 py-0.5 text-[10px] rounded-full ${
+                <span className={`absolute top-1 right-2 md:relative md:top-0 md:right-0 ml-1 px-1.5 py-0.5 text-[8px] md:text-[10px] rounded-full ${
                   activeTab === "licenses" ? "bg-blue-500 text-black" : "bg-gray-800 text-gray-400"
                 }`}>
                   {activeLicenses.length}

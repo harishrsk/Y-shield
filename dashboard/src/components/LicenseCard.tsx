@@ -29,14 +29,14 @@ export function LicenseCard({ lic }: { lic: any }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8">
           <div>
-            <h3 className="text-sm font-bold text-gray-400 uppercase mb-4 tracking-widest">Protected Domains</h3>
+            <h3 className="text-[10px] md:text-sm font-bold text-gray-400 uppercase mb-4 tracking-widest">Protected Domains</h3>
             <div className="space-y-2 mb-6">
               {lic.protectedDomains?.map((d: any) => (
-                <div key={d.id} className="text-sm font-mono bg-black/40 p-2 rounded border border-white/5 flex justify-between items-center">
-                  {d.domain}
-                  <span className="text-[10px] text-emerald-500">SECURED</span>
+                <div key={d.id} className="text-xs md:text-sm font-mono bg-black/40 p-2.5 rounded border border-white/5 flex justify-between items-center">
+                   <span className="truncate mr-2">{d.domain}</span>
+                  <span className="text-[9px] text-emerald-500 font-bold shrink-0">SECURED</span>
                 </div>
               ))}
               {(!lic.protectedDomains || lic.protectedDomains.length === 0) && (
@@ -65,21 +65,23 @@ export function LicenseCard({ lic }: { lic: any }) {
             >
               <input 
                 name="domain"
-                placeholder="Enter domain" 
-                className="flex-1 bg-black border border-gray-800 rounded px-3 py-2 text-xs focus:border-emerald-500 outline-none transition-colors"
+                placeholder="domain.com" 
+                className="flex-1 bg-black border border-gray-800 rounded-lg px-3 py-2.5 text-xs focus:border-emerald-500 outline-none transition-colors"
               />
-              <button className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-black text-xs font-bold rounded transition-all">
+              <button className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-black text-xs font-bold rounded-lg transition-all shrink-0">
                 Add
               </button>
             </form>
           </div>
           <div>
-            <h3 className="text-sm font-bold text-gray-400 uppercase mb-4 tracking-widest">License Authentication</h3>
-            <div className="p-4 bg-gray-950 rounded-lg border border-gray-800">
-              <p className="text-xs text-gray-400 mb-2">Authenticated via Mobile:</p>
-              <p className="text-lg font-mono text-white">{lic.mobileNumber || "N/A"}</p>
-              <p className="mt-4 text-xs text-gray-500 italic">License Key (Truncated):</p>
-              <p className="text-[10px] font-mono text-gray-600 break-all">{lic.licenseKey.substring(0, 40)}...</p>
+            <h3 className="text-[10px] md:text-sm font-bold text-gray-400 uppercase mb-4 tracking-widest">License Authentication</h3>
+            <div className="p-5 bg-gray-950 rounded-xl border border-gray-800">
+              <p className="text-[10px] text-gray-500 mb-2 uppercase tracking-widest">Authenticated Mobile</p>
+              <p className="text-base md:text-lg font-mono text-white mb-4">{lic.mobileNumber || "N/A"}</p>
+              <div className="pt-4 border-t border-gray-900">
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-2">License Key</p>
+                <p className="text-[10px] font-mono text-gray-600 break-all leading-relaxed">{lic.licenseKey.substring(0, 32)}...</p>
+              </div>
             </div>
           </div>
         </div>

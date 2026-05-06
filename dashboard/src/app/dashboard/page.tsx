@@ -62,32 +62,32 @@ export default async function UserDashboard() {
       {/* ═══════════════════════════════════════════════════════════════════
           DASHBOARD FOOTER: CORPORATE & SUPPORT
       ═══════════════════════════════════════════════════════════════════ */}
-      <footer className="mt-24 border-t border-gray-900 pt-12 pb-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
+      <footer className="mt-24 border-t border-gray-900 pt-12 pb-24 md:pb-8">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12 md:gap-8 text-center md:text-left">
+          <div className="flex flex-col items-center md:items-start">
+            <div className="flex items-center gap-2 mb-3">
               <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-              <span className="text-xs font-mono text-emerald-500 tracking-widest uppercase font-bold">Y-Shield Sovereign Core Active</span>
+              <span className="text-xs font-mono text-emerald-500 tracking-widest uppercase font-bold">Sovereign Core Active</span>
             </div>
-            <p className="text-xs text-gray-600 font-mono">
-              © 2026 Yochan Enterprises. FIPS 140-3 Level 4 Roadmap.
+            <p className="text-[10px] md:text-xs text-gray-600 font-mono">
+              © 2026 Yochan Enterprises. FIPS 140-3 Roadmap.
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-8 md:gap-12">
-            <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-row gap-8 md:gap-12 w-full md:w-auto">
+            <div className="flex flex-col items-center md:items-start">
               <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Technical Support</div>
-              <a href="mailto:harish@yochanenterprises.com" className="text-sm text-gray-400 hover:text-emerald-400 transition-colors font-mono">
+              <a href="mailto:harish@yochanenterprises.com" className="text-xs md:text-sm text-gray-400 hover:text-emerald-400 transition-colors font-mono">
                 harish@yochanenterprises.com
               </a>
             </div>
-            <div>
-              <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Emergency Sovereign Line</div>
-              <div className="text-sm text-gray-400 font-mono">
+            <div className="flex flex-col items-center md:items-start">
+              <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Emergency Line</div>
+              <div className="text-xs md:text-sm text-gray-400 font-mono">
                 +91 7502940397
               </div>
             </div>
-            <div>
+            <div className="flex flex-col items-center md:items-start sm:col-span-2 md:col-span-1">
               <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-2">System Status</div>
               <div className="text-xs text-emerald-500 font-bold font-mono">
                 ENCRYPTED & SYNCED

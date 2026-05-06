@@ -33,42 +33,42 @@ export function AnalyticsWidgets() {
         </div>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         {/* Stat Cards */}
-        <div className="bg-gray-900 border border-gray-800 p-6 rounded-xl flex items-center gap-4 shadow-lg group hover:border-emerald-500/30 transition-all">
-          <div className="p-4 bg-emerald-900/30 rounded-lg text-emerald-500"><ShieldCheck className="w-8 h-8" /></div>
+        <div className="bg-gray-900 border border-gray-800 p-4 md:p-6 rounded-xl flex items-center gap-4 shadow-lg group hover:border-emerald-500/30 transition-all">
+          <div className="p-3 md:p-4 bg-emerald-900/30 rounded-lg text-emerald-500 shrink-0"><ShieldCheck className="w-6 h-6 md:w-8 md:h-8" /></div>
           <div>
-            <p className="text-sm text-gray-400">Total Sovereign Handshakes</p>
-            <p className="text-3xl font-bold text-white">30,406 <span className="text-[10px] text-gray-600 font-mono">[PROJECTION]</span></p>
+            <p className="text-[10px] md:text-sm text-gray-400 uppercase tracking-widest">Sovereign Handshakes</p>
+            <p className="text-xl md:text-3xl font-bold text-white">30,406</p>
           </div>
         </div>
-        <div className="bg-gray-900 border border-gray-800 p-6 rounded-xl flex items-center gap-4 shadow-lg group hover:border-red-500/30 transition-all">
-          <div className="p-4 bg-red-900/30 rounded-lg text-red-500"><ShieldAlert className="w-8 h-8" /></div>
+        <div className="bg-gray-900 border border-gray-800 p-4 md:p-6 rounded-xl flex items-center gap-4 shadow-lg group hover:border-red-500/30 transition-all">
+          <div className="p-3 md:p-4 bg-red-900/30 rounded-lg text-red-500 shrink-0"><ShieldAlert className="w-6 h-6 md:w-8 md:h-8" /></div>
           <div>
-            <p className="text-sm text-gray-400">Downgrade Attacks Blocked</p>
-            <p className="text-3xl font-bold text-white">19,550 <span className="text-[10px] text-gray-600 font-mono">[DEMO]</span></p>
+            <p className="text-[10px] md:text-sm text-gray-400 uppercase tracking-widest">Threats Blocked</p>
+            <p className="text-xl md:text-3xl font-bold text-white">19,550</p>
           </div>
         </div>
-        <div className="bg-gray-900 border border-gray-800 p-6 rounded-xl flex items-center gap-4 shadow-lg group hover:border-blue-500/30 transition-all">
-          <div className="p-4 bg-blue-900/30 rounded-lg text-blue-500"><Globe className="w-8 h-8" /></div>
+        <div className="bg-gray-900 border border-gray-800 p-4 md:p-6 rounded-xl flex items-center gap-4 shadow-lg group hover:border-blue-500/30 transition-all">
+          <div className="p-3 md:p-4 bg-blue-900/30 rounded-lg text-blue-500 shrink-0"><Globe className="w-6 h-6 md:w-8 md:h-8" /></div>
           <div>
-            <p className="text-sm text-gray-400">Projected Capacity (Domains)</p>
-            <p className="text-3xl font-bold text-white">500+</p>
+            <p className="text-[10px] md:text-sm text-gray-400 uppercase tracking-widest">Active Domains</p>
+            <p className="text-xl md:text-3xl font-bold text-white">500+</p>
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Line Chart */}
-        <div className="lg:col-span-2 bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-lg">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-bold text-white">Global Threat Intelligence <span className="text-[10px] text-gray-500 font-mono ml-2 uppercase tracking-widest">Aggregated</span></h3>
+        <div className="lg:col-span-2 bg-gray-900 border border-gray-800 rounded-xl p-4 md:p-6 shadow-lg">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-6 gap-2">
+            <h3 className="text-sm md:text-lg font-bold text-white">Global Threat Intelligence</h3>
             <div className="flex gap-4 text-[10px] font-mono">
               <span className="text-emerald-400">● Handshakes</span>
               <span className="text-red-400">● Blocked</span>
             </div>
           </div>
-          <div className="h-72 w-full">
+          <div className="h-64 md:h-72 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={mockThreatData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
