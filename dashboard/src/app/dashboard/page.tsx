@@ -4,17 +4,10 @@ import { ShieldAlert } from "lucide-react";
 import { redirect } from "next/navigation";
 import { LicenseCard } from "@/components/LicenseCard";
 import { AnalyticsWidgets } from "@/components/AnalyticsWidgets";
-import { ZeroKnowledgePanel } from "@/components/ZeroKnowledgePanel";
-import { SideChannelStatus } from "@/components/SideChannelStatus";
-import { QDPIMonitor } from "@/components/QDPIMonitor";
-import { PerformancePanel } from "@/components/PerformancePanel";
-import { FederationPanel } from "@/components/FederationPanel";
-import { MerkleFailsafePanel } from "@/components/MerkleFailsafePanel";
+import { SovereigntySelector } from "@/components/SovereigntySelector";
+import { SecuritySuiteTabs } from "@/components/SecuritySuiteTabs";
 import { LogoutButton } from "@/components/LogoutButton";
 import { LaymanGuide } from "@/components/LaymanGuide";
-import { EbpfHardeningPanel } from "@/components/EbpfHardeningPanel";
-import { SovereigntySelector } from "@/components/SovereigntySelector";
-import { KillSwitchPanel } from "@/components/KillSwitchPanel";
 
 export default async function UserDashboard() {
   const session = await getServerSession();
@@ -96,32 +89,7 @@ export default async function UserDashboard() {
         <p className="text-sm text-gray-500 mt-1">Advanced sovereign hardening — beyond standard PQC compliance</p>
       </div>
 
-      <div className="space-y-8">
-        {/* Feature X: eBPF/XDP Handshake Filter */}
-        <EbpfHardeningPanel />
-
-        {/* Feature 0: Tiered Cryptography Routing */}
-        <MerkleFailsafePanel />
-
-        {/* Feature 1: Zero-Knowledge Key Infrastructure */}
-        <ZeroKnowledgePanel />
-
-        {/* Feature 2: Side-Channel Attack Immunity */}
-        <SideChannelStatus />
-
-        {/* Feature 3: Quantum-Deep Packet Inspection */}
-        <QDPIMonitor />
-
-        {/* Feature 4: Hardware-Accelerated Performance */}
-        <PerformancePanel />
-
-        {/* Feature 5: Multi-Tenant Sovereign Sync */}
-        <FederationPanel />
-      </div>
-
-      <div className="mt-16">
-        <KillSwitchPanel />
-      </div>
+      <SecuritySuiteTabs />
 
       {/* ═══════════════════════════════════════════════════════════════════
           DASHBOARD FOOTER: CORPORATE & SUPPORT

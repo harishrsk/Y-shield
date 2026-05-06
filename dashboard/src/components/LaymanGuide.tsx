@@ -45,12 +45,12 @@ export function LaymanGuide() {
                 <div className="p-5 bg-white/5 rounded-2xl border border-white/5">
                   <Cpu className="text-violet-400 mb-3" />
                   <h5 className="text-white font-bold mb-2 text-sm">Classical Security</h5>
-                  <p className="text-xs text-gray-500 leading-relaxed">Like a very strong lock, but someone just invented a "Master Key" (Quantum Computing) that opens it instantly.</p>
+                  <p className="text-xs text-gray-500 leading-relaxed">Like sealing data in an envelope glued with a complex puzzle. Quantum Computers can solve the puzzle instantly to open it.</p>
                 </div>
                 <div className="p-5 bg-emerald-500/10 rounded-2xl border border-emerald-500/20">
                   <Zap className="text-emerald-400 mb-3" />
                   <h5 className="text-emerald-400 font-bold mb-2 text-sm">Yochan-Shield PQC</h5>
-                  <p className="text-xs text-gray-300 leading-relaxed">We replaced the lock with a "Lattice Trap." It's a new kind of math that even the Master Key can't solve.</p>
+                  <p className="text-xs text-gray-300 leading-relaxed">We put your data inside a multi-dimensional steel vault (Lattice Math) that is mathematically immune to Quantum hacking.</p>
                 </div>
               </div>
 

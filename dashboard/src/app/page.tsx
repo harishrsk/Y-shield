@@ -113,13 +113,13 @@ export default function Home() {
 
               <div className="space-y-6 text-lg leading-relaxed text-gray-300">
                 <p>
-                  Think of the internet today as using <span className="text-white font-semibold italic underline decoration-emerald-500/30">standard padlocks</span>. They work great for now, but a new type of <span className="text-emerald-400 font-bold">&quot;Quantum&quot; skeleton key</span> is being built that can open almost every padlock in the world.
+                  Imagine you are sending a secret letter across the internet. Right now, it is sealed inside an envelope that is glued shut with a <span className="text-white font-semibold italic underline decoration-emerald-500/30">complex math puzzle</span>. Standard computers cannot solve the puzzle, so your letter is safe.
                 </p>
                 <p>
-                  Companies are already &quot;harvesting&quot; encrypted data today, waiting for that key to be finished so they can unlock it later. 
+                  However, <span className="text-emerald-400 font-bold">Quantum Computers</span> solve puzzles completely differently. To a powerful Quantum Computer, that complex glued envelope looks like it is already wide open.
                 </p>
                 <div className="p-6 bg-emerald-950/20 border border-emerald-500/20 rounded-2xl italic">
-                  &quot;Yochan-Shield replaces those old padlocks with new, <span className="text-emerald-400 font-bold underline">Quantum-Safe locks</span> that are mathematically impossible for that new key to open. We keep your data safe not just for today, but for the next 50 years.&quot;
+                  &quot;Yochan-Shield doesn&apos;t just use a harder puzzle. We put your data inside a <span className="text-emerald-400 font-bold underline">multi-dimensional steel vault</span> (Lattice Cryptography). Even if a Quantum Computer has infinite time, the mathematics of our vault make it fundamentally impossible to break.&quot;
                 </div>
               </div>
 
