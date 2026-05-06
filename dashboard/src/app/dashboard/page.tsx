@@ -12,6 +12,7 @@ import { FederationPanel } from "@/components/FederationPanel";
 import { MerkleFailsafePanel } from "@/components/MerkleFailsafePanel";
 import { LogoutButton } from "@/components/LogoutButton";
 import { LaymanGuide } from "@/components/LaymanGuide";
+import { EbpfHardeningPanel } from "@/components/EbpfHardeningPanel";
 
 export default async function UserDashboard() {
   const session = await getServerSession();
@@ -90,6 +91,9 @@ export default async function UserDashboard() {
       </div>
 
       <div className="space-y-8">
+        {/* Feature X: eBPF/XDP Handshake Filter */}
+        <EbpfHardeningPanel />
+
         {/* Feature 0: Tiered Cryptography Routing */}
         <MerkleFailsafePanel />
 

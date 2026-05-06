@@ -63,7 +63,7 @@ export default function Home() {
             Yochan-Shield
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            The World&apos;s First Commercial-Grade Post-Quantum Gateway. 
+            The World&apos;s First Cisco-Grade Enterprise Post-Quantum Gateway. 
             Dual-deployment on AWS or Local. Protect your assets with <code className="text-emerald-300 bg-emerald-900/40 px-1 py-0.5 rounded">x25519_mlkem768</code> today.
           </p>
           
@@ -282,19 +282,23 @@ export default function Home() {
             <ul className="space-y-4 text-sm text-gray-300">
               <li className="flex gap-3">
                 <span className="text-emerald-500">✓</span>
-                Full Technical Due Diligence Folders Available
+                Kernel-Level eBPF/XDP Handshake Defense
               </li>
               <li className="flex gap-3">
                 <span className="text-emerald-500">✓</span>
-                FIPS 140-3 Level 4 Roadmap Verification
+                Strict Protocol Downgrade & Stripping Protection
               </li>
               <li className="flex gap-3">
                 <span className="text-emerald-500">✓</span>
-                NQM Level 4 Sovereignty Audit Reports
+                Atomic Socket Handoff (Zero-Downtime)
               </li>
               <li className="flex gap-3">
                 <span className="text-emerald-500">✓</span>
-                eBPF & AVX-512 Source Code Inspection (under NDA)
+                Jumbo PQC Handshake Network Tuning
+              </li>
+              <li className="flex gap-3">
+                <span className="text-emerald-500">✓</span>
+                Full Technical Due Diligence Folders Available (under NDA)
               </li>
             </ul>
           </div>
