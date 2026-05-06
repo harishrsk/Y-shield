@@ -13,6 +13,8 @@ import { MerkleFailsafePanel } from "@/components/MerkleFailsafePanel";
 import { LogoutButton } from "@/components/LogoutButton";
 import { LaymanGuide } from "@/components/LaymanGuide";
 import { EbpfHardeningPanel } from "@/components/EbpfHardeningPanel";
+import { SovereigntySelector } from "@/components/SovereigntySelector";
+import { KillSwitchPanel } from "@/components/KillSwitchPanel";
 
 export default async function UserDashboard() {
   const session = await getServerSession();
@@ -78,6 +80,10 @@ export default async function UserDashboard() {
         </div>
       )}
 
+      <div className="mb-12">
+        <SovereigntySelector />
+      </div>
+
       <AnalyticsWidgets />
 
       {/* ═══════════════════════════════════════════════════════════════════
@@ -111,6 +117,10 @@ export default async function UserDashboard() {
 
         {/* Feature 5: Multi-Tenant Sovereign Sync */}
         <FederationPanel />
+      </div>
+
+      <div className="mt-16">
+        <KillSwitchPanel />
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════════

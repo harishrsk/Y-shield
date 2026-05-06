@@ -10,10 +10,7 @@ import { Shield } from "lucide-react";
 import { NavHeader } from "@/components/NavHeader";
 
 export default function Home() {
-  const [sovereignRegion, setSovereignRegion] = useState("AWS Mumbai (ap-south-1)");
-  const [showSovereignModal, setShowSovereignModal] = useState(false);
   const [showLaymanGuide, setShowLaymanGuide] = useState(false);
-  const isSovereign = sovereignRegion.includes("Mumbai") || sovereignRegion.includes("Delhi") || sovereignRegion.includes("Pune");
   
   const jsonLd = {
     "@context": "https://schema.org",
@@ -97,76 +94,6 @@ export default function Home() {
         <ThreatScanner />
       </div>
       
-      {/* Data Sovereignty Lock Section */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className={`rounded-2xl border p-8 flex flex-col md:flex-row items-center justify-between gap-8 transition-all ${isSovereign ? 'bg-emerald-950/20 border-emerald-500/20' : 'bg-orange-950/20 border-orange-500/20'}`}>
-          <div>
-            <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-              <span className={`flex h-3 w-3 rounded-full animate-pulse ${isSovereign ? 'bg-emerald-500' : 'bg-orange-500'}`} />
-              {isSovereign ? "Sovereign Node Lock Active" : "Global PQC Routing Active"}
-            </h2>
-            <p className="mt-2 text-gray-400">
-              {isSovereign 
-                ? `Enforcing PQC Key Encapsulation strictly on local Indian nodes (${sovereignRegion}) for NQM Level 4 compliance.`
-                : `Routing PQC via ${sovereignRegion}. FIPS 203 Compliant, but Data Sovereignty (NQM Level 4) is disabled.`}
-            </p>
-          </div>
-          <button 
-            onClick={() => setShowSovereignModal(true)}
-            className={`w-full md:w-auto px-6 py-3 text-white font-bold rounded-lg transition-all shadow-[0_0_20px_rgba(0,0,0,0.3)] ${isSovereign ? 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-500/30' : 'bg-orange-600 hover:bg-orange-500 shadow-orange-500/30'}`}
-          >
-            Configure Sovereignty Policy
-          </button>
-        </div>
-      </div>
-
-      {/* Sovereignty Policy Modal */}
-      {showSovereignModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
-          <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl">
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Select Physical Data Center</h3>
-            <p className="text-gray-400 mb-6 text-sm">
-              Routing cryptography to a foreign data center will instantly revoke NQM Level 4 (Sovereign) compliance.
-            </p>
-            
-            <div className="space-y-3 mb-8">
-              {[
-                { name: "AWS Mumbai (ap-south-1)", type: "NQM Level 4 Valid", icon: "🇮🇳" },
-                { name: "Azure Pune (Central India)", type: "NQM Level 4 Valid", icon: "🇮🇳" },
-                { name: "On-Premise Delhi (Rack 1)", type: "NQM Level 4 Valid", icon: "🇮🇳" },
-                { name: "AWS US-East (Virginia)", type: "Non-Sovereign", icon: "🇺🇸" },
-                { name: "AWS Europe (Stockholm)", type: "Non-Sovereign", icon: "🇸🇪" },
-              ].map((dc) => (
-                <button
-                  key={dc.name}
-                  onClick={() => {
-                    setSovereignRegion(dc.name);
-                    setShowSovereignModal(false);
-                    // Simulate logging the policy change to the backend audit trail
-                    fetch('/api/audit-trail', { method: 'POST', body: JSON.stringify({ action: `Sovereignty Policy Changed to ${dc.name}` }) }).catch(() => {});
-                  }}
-                  className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${sovereignRegion === dc.name ? 'bg-gray-800 border-emerald-500' : 'bg-black border-gray-800 hover:border-gray-600'}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{dc.icon}</span>
-                    <span className="text-white font-medium">{dc.name}</span>
-                  </div>
-                  <span className={`text-xs font-bold px-2 py-1 rounded ${dc.type.includes("NQM") ? 'bg-emerald-900/50 text-emerald-400' : 'bg-orange-900/50 text-orange-400'}`}>
-                    {dc.type}
-                  </span>
-                </button>
-              ))}
-            </div>
-            
-            <button 
-              onClick={() => setShowSovereignModal(false)}
-              className="w-full py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-xl transition"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Layman's Guide Modal */}
       {showLaymanGuide && (
@@ -212,42 +139,6 @@ export default function Home() {
 
       <AuditTrail />
 
-      {/* Danger Zone: PQC Kill Switch */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="rounded-2xl border border-red-500/20 bg-red-950/10 p-8">
-          <h3 className="text-xl font-bold text-red-500 flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-red-500 animate-ping" />
-            Sovereign Kill Switch (2026 Protocol)
-          </h3>
-          <p className="mt-2 text-sm text-gray-400">
-            In the event of a research breakthrough (Cryptanalysis) breaking a specific PQC algorithm, use the Kill Switch to instantly deprecate the algorithm across all nodes.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-4">
-            <button 
-              onClick={async () => {
-                if(confirm("CRITICAL: Deprecate ML-KEM-768 across all sovereign nodes?")) {
-                  await fetch('/api/kill-switch', { method: 'POST', body: JSON.stringify({ algorithm: 'mlkem768' }) });
-                  alert("ML-KEM-768 Deprecated. Gateway config reloaded.");
-                }
-              }}
-              className="px-4 py-2 bg-red-900/40 hover:bg-red-800 text-red-200 text-sm font-bold rounded border border-red-500/30 transition-all"
-            >
-              Deprecate ML-KEM-768
-            </button>
-            <button 
-              onClick={async () => {
-                if(confirm("CRITICAL: Deprecate SLH-DSA across all sovereign nodes?")) {
-                  await fetch('/api/kill-switch', { method: 'POST', body: JSON.stringify({ algorithm: 'slhdsa' }) });
-                  alert("SLH-DSA Deprecated. Gateway config reloaded.");
-                }
-              }}
-              className="px-4 py-2 bg-red-900/40 hover:bg-red-800 text-red-200 text-sm font-bold rounded border border-red-500/30 transition-all"
-            >
-              Deprecate SLH-DSA
-            </button>
-          </div>
-        </div>
-      </div>
 
       <div id="pricing">
         <LicenseTiers />
