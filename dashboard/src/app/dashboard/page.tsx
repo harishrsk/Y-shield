@@ -2,12 +2,9 @@ import { getServerSession } from "next-auth/next";
 import { prisma } from "@/lib/prisma";
 import { ShieldAlert } from "lucide-react";
 import { redirect } from "next/navigation";
-import { LicenseCard } from "@/components/LicenseCard";
-import { AnalyticsWidgets } from "@/components/AnalyticsWidgets";
-import { SovereigntySelector } from "@/components/SovereigntySelector";
-import { SecuritySuiteTabs } from "@/components/SecuritySuiteTabs";
 import { LogoutButton } from "@/components/LogoutButton";
 import { LaymanGuide } from "@/components/LaymanGuide";
+import { DashboardTabs } from "@/components/DashboardTabs";
 
 export default async function UserDashboard() {
   const session = await getServerSession();
@@ -60,36 +57,7 @@ export default async function UserDashboard() {
         </div>
       </div>
       
-      {activeLicenses.map((lic) => (
-        <LicenseCard key={lic.id} lic={lic} />
-      ))}
-
-      {activeLicenses.length === 0 && (
-        <div className="text-center py-24 bg-gray-900 border border-gray-800 rounded-xl mb-12">
-          <p className="text-gray-500 italic mb-4">No active quantum-safe licenses found.</p>
-          <a href="/checkout" className="inline-block px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-black font-bold rounded transition-all">
-            Purchase Sovereign License
-          </a>
-        </div>
-      )}
-
-      <div className="mb-12">
-        <SovereigntySelector />
-      </div>
-
-      <AnalyticsWidgets />
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          ENTERPRISE SECURITY UPGRADES
-      ═══════════════════════════════════════════════════════════════════ */}
-      <div className="mt-16 mb-8">
-        <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-blue-500">
-          Enterprise Security Suite
-        </h2>
-        <p className="text-sm text-gray-500 mt-1">Advanced sovereign hardening — beyond standard PQC compliance</p>
-      </div>
-
-      <SecuritySuiteTabs />
+      <DashboardTabs activeLicenses={activeLicenses} />
 
       {/* ═══════════════════════════════════════════════════════════════════
           DASHBOARD FOOTER: CORPORATE & SUPPORT
