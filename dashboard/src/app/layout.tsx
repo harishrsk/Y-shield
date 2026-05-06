@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yochan-Shield | Enterprise Post-Quantum Cryptography (PQC) Gateway",
-  description: "Secure your infrastructure with Yochan-Shield, the world's first commercial-grade Post-Quantum Cryptography (PQC) edge gateway. Native support for ML-KEM, ML-DSA, and Hybrid TLS 1.3.",
+  title: "Y-Shield | Enterprise Post-Quantum Cryptography (PQC) Gateway",
+  description: "Secure your infrastructure with Y-Shield, the world's first commercial-grade Post-Quantum Cryptography (PQC) edge gateway. Native support for ML-KEM, ML-DSA, and Hybrid TLS 1.3.",
   keywords: [
     "Post-Quantum Cryptography",
     "PQC Gateway",
@@ -30,16 +30,16 @@ export const metadata: Metadata = {
   authors: [{ name: "Harish" }],
   creator: "Yochan Enterprises",
   openGraph: {
-    title: "Yochan-Shield | The Future of Quantum-Safe Security",
+    title: "Y-Shield | The Future of Quantum-Safe Security",
     description: "Deployment-ready PQC gateway protecting enterprise data from future quantum attacks.",
     url: "/",
-    siteName: "Yochan-Shield",
+    siteName: "Y-Shield",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Yochan-Shield Sovereign Security Gateway",
+        alt: "Y-Shield Sovereign Security Gateway",
       },
     ],
     locale: "en_US",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yochan-Shield | Post-Quantum Security Gateway",
+    title: "Y-Shield | Post-Quantum Security Gateway",
     description: "Protecting your enterprise assets with next-generation lattice-based cryptography.",
     images: ["/og-image.png"],
   },

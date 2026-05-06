@@ -36,7 +36,16 @@ const handler = NextAuth({
             throw new Error("Invalid password.");
           }
 
-          return { id: user.id, email: user.email };
+          // Special hardcoded admin for testing if the DB flag isn't set yet
+          if (user.email === "harishrsk@gmail.com" && !user.isAdmin) {
+             await prisma.user.update({
+                where: { email: user.email },
+                data: { isAdmin: true }
+             });
+             user.isAdmin = true;
+          }
+
+          return { id: user.id, email: user.email, isAdmin: user.isAdmin };
         } catch (error: any) {
           console.error("[AUTH_ERROR]", error.message);
           throw new Error(error.message || "Authentication failed.");
@@ -49,12 +58,14 @@ const handler = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.isAdmin = (user as any).isAdmin;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user && token) {
         (session.user as any).id = token.id;
+        (session.user as any).isAdmin = token.isAdmin;
       }
       return session;
     },

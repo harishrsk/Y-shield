@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "X-Sovereign-PQC", value: "active" },
           { key: "X-PQC-Algorithm", value: "X25519MLKEM768" },
-          { key: "X-Yochan-Shield", value: "v2.0" },
+          { key: "X-Y-Shield", value: "v2.0" },
           { key: "X-ZK-Mode", value: "stateless" },
           { key: "X-SCA-Protection", value: "constant-time-masked" },
           { key: "X-QDPI-Engine", value: "active" },

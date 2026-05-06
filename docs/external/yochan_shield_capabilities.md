@@ -1,7 +1,7 @@
-# Yochan-Shield: Technical Capabilities Overview
+# Y-Shield: Technical Capabilities Overview
 
 ## 1. Executive Summary
-Yochan-Shield is a **Tier-1 Sovereign Post-Quantum Cryptographic (PQC) Gateway**. It operates as an ultra-hardened edge node, sitting between the public internet and enterprise internal networks, enforcing absolute mathematical immunity against future quantum computer attacks while maintaining strict compliance with national data sovereignty laws.
+Y-Shield is a **Tier-1 Sovereign Post-Quantum Cryptographic (PQC) Gateway**. It operates as an ultra-hardened edge node, sitting between the public internet and enterprise internal networks, enforcing absolute mathematical immunity against future quantum computer attacks while maintaining strict compliance with national data sovereignty laws.
 
 ---
 

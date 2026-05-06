@@ -13,7 +13,7 @@ export function NavHeader() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
         <a href="/" className="flex items-center gap-3">
           <Shield className="w-8 h-8 text-emerald-500 shrink-0" />
-          <span className="text-lg sm:text-xl font-bold text-white tracking-tight">Yochan-Shield</span>
+          <span className="text-lg sm:text-xl font-bold text-white tracking-tight">Y-Shield</span>
         </a>
 
         {/* Desktop Navigation */}

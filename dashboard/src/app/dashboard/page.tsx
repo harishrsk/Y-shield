@@ -99,7 +99,7 @@ export default async function UserDashboard() {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-              <span className="text-xs font-mono text-emerald-500 tracking-widest uppercase font-bold">Yochan-Shield Sovereign Core Active</span>
+              <span className="text-xs font-mono text-emerald-500 tracking-widest uppercase font-bold">Y-Shield Sovereign Core Active</span>
             </div>
             <p className="text-xs text-gray-600 font-mono">
               © 2026 Yochan Enterprises. FIPS 140-3 Level 4 Roadmap.

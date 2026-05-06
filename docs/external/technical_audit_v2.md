@@ -1,10 +1,10 @@
-# Yochan-Shield Technical Audit Report (v2.0)
+# Y-Shield Technical Audit Report (v2.0)
 **Date:** May 3, 2026  
 **Subject:** PQC Handshake Latency, Packet Overhead, and Architecture Analysis  
 **Auditor:** Antigravity (Advanced Agentic AI)
 
 ## 1. Executive Summary
-This report analyzes the performance and security trade-offs of the Yochan-Shield Sovereign Gateway compared to classical TLS 1.3 standards. The current build utilizes a **Hybrid PQC Stack**, optimizing for high-throughput enterprise environments while ensuring future-proof immunity to Shor's Algorithm.
+This report analyzes the performance and security trade-offs of the Y-Shield Sovereign Gateway compared to classical TLS 1.3 standards. The current build utilizes a **Hybrid PQC Stack**, optimizing for high-throughput enterprise environments while ensuring future-proof immunity to Shor's Algorithm.
 
 ## 2. Comparative Benchmark Matrix
 
@@ -15,7 +15,7 @@ This report analyzes the performance and security trade-offs of the Yochan-Shiel
     <tr style="background-color: #0f172a; color: #10b981;">
       <th align="left">Metric</th>
       <th align="left">Standard TLS 1.3 (P-256)</th>
-      <th align="left">Yochan-Shield (ML-KEM-768)</th>
+      <th align="left">Y-Shield (ML-KEM-768)</th>
       <th align="left">Impact / Delta</th>
     </tr>
   </thead>

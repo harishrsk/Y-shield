@@ -1,4 +1,4 @@
-# Yochan-Shield: Automated Billing & Analytics Dashboard
+# Y-Shield: Automated Billing & Analytics Dashboard
 
 The platform has been successfully upgraded into a fully monetizable SaaS product. We have replaced the simulated checkout with a highly secure Razorpay Webhook integration and introduced a data-rich Client Portal.
 

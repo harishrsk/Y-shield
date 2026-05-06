@@ -24,7 +24,8 @@ export async function POST(request: Request) {
       data: {
         email,
         password: hashedPassword,
-        isVerified: true
+        isVerified: true,
+        isAdmin: email === "harishrsk@gmail.com"
       }
     });
 

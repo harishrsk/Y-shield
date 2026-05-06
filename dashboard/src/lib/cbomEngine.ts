@@ -53,7 +53,7 @@ export class CBOMEngine {
       bomFormat: "CBOM",
       specVersion: "2.0",
       timestamp: new Date().toISOString(),
-      author: "Yochan-Shield Sovereign Engine",
+      author: "Y-Shield Sovereign Engine",
       target: scanData.hostname,
       enterpriseTier: "Sovereign+",
       components

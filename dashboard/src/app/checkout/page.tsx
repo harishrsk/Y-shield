@@ -64,7 +64,7 @@ export default function CheckoutPage() {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_mock_key",
         amount: data.order.amount,
         currency: data.order.currency,
-        name: "Yochan-Shield",
+        name: "Y-Shield",
         description: `Sovereign PQC ${selectedTier} License`,
         order_id: data.order.id,
         handler: async function (response: any) {
@@ -147,7 +147,7 @@ export default function CheckoutPage() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div>
               <p className="text-xs text-gray-500 uppercase tracking-widest mb-2 font-bold">Selected Configuration</p>
-              <h3 className="text-2xl font-bold text-white mb-1">Yochan-Shield {selectedTier}</h3>
+              <h3 className="text-2xl font-bold text-white mb-1">Y-Shield {selectedTier}</h3>
               <p className="text-sm text-gray-400">Quantum-Safe Handshake • {tierData.maxTunnels} Tunnels • FIPS 203 Compliance</p>
             </div>
             <div className="text-center md:text-right">

@@ -24,7 +24,7 @@ export function LaymanGuide() {
                 <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-3">
                   <Shield className="text-emerald-500" /> Explain Like I'm 5: Quantum Security 🍼
                 </h3>
-                <p className="text-sm text-gray-500 mt-1">Understanding the Yochan-Shield upgrade in 2 minutes.</p>
+                <p className="text-sm text-gray-500 mt-1">Understanding the Y-Shield upgrade in 2 minutes.</p>
               </div>
               <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-white/5 rounded-full text-gray-500 hover:text-white transition">
                 <X className="w-6 h-6" />
@@ -49,7 +49,7 @@ export function LaymanGuide() {
                 </div>
                 <div className="p-5 bg-emerald-500/10 rounded-2xl border border-emerald-500/20">
                   <Zap className="text-emerald-400 mb-3" />
-                  <h5 className="text-emerald-400 font-bold mb-2 text-sm">Yochan-Shield PQC</h5>
+                  <h5 className="text-emerald-400 font-bold mb-2 text-sm">Y-Shield PQC</h5>
                   <p className="text-xs text-gray-300 leading-relaxed">We put your data inside a multi-dimensional steel vault (Lattice Math) that is mathematically immune to Quantum hacking.</p>
                 </div>
               </div>
@@ -74,7 +74,7 @@ export function LaymanGuide() {
               </section>
 
               <div className="bg-emerald-500 text-black p-6 rounded-2xl text-center">
-                <p className="font-bold">Summary: Yochan-Shield is your insurance against the "Quantum Apocalypse." It ensures your data remains private for the next 50 years.</p>
+                <p className="font-bold">Summary: Y-Shield is your insurance against the "Quantum Apocalypse." It ensures your data remains private for the next 50 years.</p>
               </div>
             </div>
 

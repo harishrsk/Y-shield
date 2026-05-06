@@ -1,4 +1,4 @@
-# Yochan-Shield: Enterprise Implementation & Production Roadmap
+# Y-Shield: Enterprise Implementation & Production Roadmap
 
 This document outlines the current state of the Enterprise Security Suite (v2.0), identifying which components are currently simulated/orchestrated and the requirements for full "Live" production deployment.
 

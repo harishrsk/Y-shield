@@ -1,6 +1,6 @@
-# Yochan-Shield: Go-To-Market & Business Strategy Playbook
+# Y-Shield: Go-To-Market & Business Strategy Playbook
 
-Transitioning from a working technical prototype to a commercial business requires strategic sequencing. Here is your roadmap for commercializing the Yochan-Shield Sovereign Gateway.
+Transitioning from a working technical prototype to a commercial business requires strategic sequencing. Here is your roadmap for commercializing the Y-Shield Sovereign Gateway.
 
 ## 1. Prerequisites (What to do first?)
 > [!IMPORTANT]
@@ -17,7 +17,7 @@ Do not pitch to Google or Microsoft—they build their own cryptography. Pitch t
 ## 3. How to Network & Pitch
 Your Vercel Dashboard is your greatest weapon. You don't need a PowerPoint. 
 - **The "Shock" Demo:** Go on LinkedIn, find the Chief Information Security Officer (CISO) of a FinTech company. Message them: *"I ran a quantum-vulnerability scan on your payment gateway. It failed against Shor's Algorithm. Can I have 10 minutes to show you how to fix it with a Sovereign Node?"*
-- **Live Demo:** Get them on a Zoom call, type their domain into your Threat Scanner, show them the **RED** alert. Then, explain how Yochan-Shield turns it **GREEN** via DNS routing without touching their code.
+- **Live Demo:** Get them on a Zoom call, type their domain into your Threat Scanner, show them the **RED** alert. Then, explain how Y-Shield turns it **GREEN** via DNS routing without touching their code.
 
 ## 4. Government Support (National Quantum Mission)
 **YES.** You are in a highly lucrative position right now. 
@@ -26,8 +26,8 @@ The Indian Government has allocated **₹6,000 Crore** for the **National Quantu
 - Look up the **"MeitY Startup Hub"** or **"iDEX" (Innovations for Defence Excellence)**. They offer massive non-dilutive grants (free money) to startups building indigenous, sovereign quantum technology. You literally have a working NQM Level 4 compliant product to show them.
 
 ## 5. Acquisition vs. Bootstrapping
-Because Yochan-Shield is deep-tech infrastructure, **Acquisition is your best and most realistic end-goal.**
+Because Y-Shield is deep-tech infrastructure, **Acquisition is your best and most realistic end-goal.**
 
-Building a massive sales team to sell to 1,000 companies is incredibly hard. Instead, your goal should be to secure **3 to 5 medium-sized enterprise clients**. Once you have proof that real companies are using Yochan-Shield, you pitch yourself to giant cybersecurity firms (like Palo Alto Networks, Crowdstrike, or Indian IT giants like TCS/Wipro). 
+Building a massive sales team to sell to 1,000 companies is incredibly hard. Instead, your goal should be to secure **3 to 5 medium-sized enterprise clients**. Once you have proof that real companies are using Y-Shield, you pitch yourself to giant cybersecurity firms (like Palo Alto Networks, Crowdstrike, or Indian IT giants like TCS/Wipro). 
 
-They will look at your software and say: *"It would take us 2 years to build a Post-Quantum Gateway. Let's just buy Yochan-Shield for millions of dollars and integrate it into our product."*
+They will look at your software and say: *"It would take us 2 years to build a Post-Quantum Gateway. Let's just buy Y-Shield for millions of dollars and integrate it into our product."*

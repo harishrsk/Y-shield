@@ -1,4 +1,4 @@
-# Software Bill of Materials (SBOM): Yochan-Shield PQC Gateway
+# Software Bill of Materials (SBOM): Y-Shield PQC Gateway
 
 **Version**: 2.0.0 (Sovereign Hardened)
 **Date**: May 4, 2026

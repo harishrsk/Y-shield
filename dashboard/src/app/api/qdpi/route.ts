@@ -6,7 +6,7 @@ import crypto from "crypto";
 // Quantum-Aware Deep Packet Inspection (Q-DPI) Module
 // Analyzes TLS handshake metadata, entropy, and algorithm negotiation patterns
 // to detect man-in-the-middle downgrade attacks and handshake tampering.
-// Turns Yochan-Shield from a passive proxy into an active threat hunter.
+// Turns Y-Shield from a passive proxy into an active threat hunter.
 // ---------------------------------------------------------------------------
 
 interface QDPIResult {

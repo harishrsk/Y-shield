@@ -1,5 +1,5 @@
 # Goal
-Transform Yochan-Shield into a fully monetizable SaaS platform by implementing a real automated billing system via **Razorpay** and building a comprehensive **Analytics Dashboard** to display cryptographic metrics to your clients.
+Transform Y-Shield into a fully monetizable SaaS platform by implementing a real automated billing system via **Razorpay** and building a comprehensive **Analytics Dashboard** to display cryptographic metrics to your clients.
 
 ## Open Questions
 > [!IMPORTANT]

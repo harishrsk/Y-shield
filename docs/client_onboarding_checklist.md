@@ -14,7 +14,7 @@ When you secure a new client (e.g., `client-bank.com`), follow this exact checkl
 Instruct your client to go to their DNS provider and point the **A-Record** for `client-bank.com` to your Master AWS IP: `13.60.169.185`.
 
 #### [ ] Step 2: Register in Dashboard
-Open your Yochan-Shield Dashboard and add their domain to your internal License Management system (so you can track their billing and usage).
+Open your Y-Shield Dashboard and add their domain to your internal License Management system (so you can track their billing and usage).
 
 #### [ ] Step 3: Add Client to Nginx
 SSH into your AWS server and open your `nginx.conf`:
@@ -27,7 +27,7 @@ server {
     listen 443 ssl http2;
     server_name client-bank.com;
 
-    # Standard Yochan-Shield PQC Certificates
+    # Standard Y-Shield PQC Certificates
     ssl_certificate      /opt/nginx/conf/q_server.crt;
     ssl_certificate_key  /opt/nginx/conf/q_server.key;
 

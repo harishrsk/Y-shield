@@ -15,7 +15,7 @@ export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Yochan-Shield",
+    "name": "Y-Shield",
     "operatingSystem": "Linux, Cloud, Edge",
     "applicationCategory": "SecurityApplication",
     "description": "High-performance Post-Quantum Cryptography (PQC) security gateway and edge router.",
@@ -57,7 +57,7 @@ export default function Home() {
           
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl flex items-center justify-center gap-4">
             <Shield className="w-12 h-12 text-emerald-400" /> 
-            Yochan-Shield
+            Y-Shield
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
             The World&apos;s First Tier-1 Enterprise Post-Quantum Gateway. 
@@ -119,7 +119,7 @@ export default function Home() {
                   However, <span className="text-emerald-400 font-bold">Quantum Computers</span> solve puzzles completely differently. To a powerful Quantum Computer, that complex glued envelope looks like it is already wide open.
                 </p>
                 <div className="p-6 bg-emerald-950/20 border border-emerald-500/20 rounded-2xl italic">
-                  &quot;Yochan-Shield doesn&apos;t just use a harder puzzle. We put your data inside a <span className="text-emerald-400 font-bold underline">multi-dimensional steel vault</span> (Lattice Cryptography). Even if a Quantum Computer has infinite time, the mathematics of our vault make it fundamentally impossible to break.&quot;
+                  &quot;Y-Shield doesn&apos;t just use a harder puzzle. We put your data inside a <span className="text-emerald-400 font-bold underline">multi-dimensional steel vault</span> (Lattice Cryptography). Even if a Quantum Computer has infinite time, the mathematics of our vault make it fundamentally impossible to break.&quot;
                 </div>
               </div>
 
@@ -150,7 +150,7 @@ export default function Home() {
           <div>
             <h2 className="text-3xl font-bold text-white mb-6">Strategic Partnerships & Acquisitions</h2>
             <p className="text-gray-400 leading-relaxed mb-8">
-              Yochan-Shield is currently expanding its global edge node network and exploring strategic integrations with Tier-1 defense and financial institutions. We are open to discussions regarding sovereign licensing, white-label partnerships, and technical acquisitions.
+              Y-Shield is currently expanding its global edge node network and exploring strategic integrations with Tier-1 defense and financial institutions. We are open to discussions regarding sovereign licensing, white-label partnerships, and technical acquisitions.
             </p>
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-4 p-4 bg-gray-900/50 rounded-xl border border-gray-800">

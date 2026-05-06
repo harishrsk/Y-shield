@@ -14,7 +14,7 @@ export function Footer() {
               Quantum Liability
             </h3>
             <p className="text-sm mb-4">
-              <strong>Liability Waiver:</strong> This software suite incorporates emerging cryptographic algorithms (specifically ML-KEM and ML-DSA). Yochan-Shield is provided "as is" and acknowledges the experimental nature of PQC.
+              <strong>Liability Waiver:</strong> This software suite incorporates emerging cryptographic algorithms (specifically ML-KEM and ML-DSA). Y-Shield is provided "as is" and acknowledges the experimental nature of PQC.
             </p>
             <p className="text-sm">
               <strong>NIST Compliance:</strong> Leveraging `x25519_mlkem768` (FIPS 203) and `mldsa65` (FIPS 204), aligning with NSA's CNSA 2.0 guidelines.

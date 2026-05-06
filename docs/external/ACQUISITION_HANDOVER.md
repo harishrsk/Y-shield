@@ -1,9 +1,9 @@
-# Technical Handover: Yochan-Shield Hybrid PQC Architecture
+# Technical Handover: Y-Shield Hybrid PQC Architecture
 
 **Target Audience**: Acquiring Engineering Teams / Technical Due Diligence Auditors
 
 ## 1. Architectural Philosophy
-Yochan-Shield is built on the principle of **Cryptographic Agility**. The system does not hard-code lattice math; it utilizes the OpenSSL 3.x Provider interface to allow immediate swaps of algorithms should a new vulnerability be discovered in a NIST finalist.
+Y-Shield is built on the principle of **Cryptographic Agility**. The system does not hard-code lattice math; it utilizes the OpenSSL 3.x Provider interface to allow immediate swaps of algorithms should a new vulnerability be discovered in a NIST finalist.
 
 ## 2. The Hybrid Handshake (X25519-MLKEM-768)
 The core IP lies in the **MTU-Optimized Hybridization**.

@@ -1,9 +1,9 @@
-# Yochan-Shield: Sovereign Post-Quantum Cryptographic Gateway
+# Y-Shield: Sovereign Post-Quantum Cryptographic Gateway
 
 [![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](LEGAL.md)
 [![PQC-Ready: ML-KEM/ML-DSA](https://img.shields.io/badge/PQC-Ready-emerald.svg)](docs/yochan_shield_capabilities.md)
 
-**Yochan-Shield** is a premium Enterprise PQC Gateway designed to protect critical infrastructure from quantum-based "Harvest Now, Decrypt Later" (HNDL) attacks. It provides a mathematically immune reverse-proxy layer that enforces NIST-standardized lattice cryptography at the network edge.
+**Y-Shield** is a premium Enterprise PQC Gateway designed to protect critical infrastructure from quantum-based "Harvest Now, Decrypt Later" (HNDL) attacks. It provides a mathematically immune reverse-proxy layer that enforces NIST-standardized lattice cryptography at the network edge.
 
 ---
 
@@ -18,7 +18,7 @@ For enterprise partnerships, sovereign licensing, or strategic acquisition inqui
 ---
 
 ## 🚀 Tier-1 Enterprise Security Suite (v2.0)
-Yochan-Shield is currently optimized for **Sovereign+ Deployment**, featuring advanced architecture hardening for institutional audits:
+Y-Shield is currently optimized for **Sovereign+ Deployment**, featuring advanced architecture hardening for institutional audits:
 
 1.  **Kernel-Level eBPF/XDP Handshake Defense**: Drops ML-KEM Lattice-Floods directly at the NIC driver level, maintaining <1% CPU load during DDoS attacks.
 2.  **Strict Protocol Downgrade & Stripping Protection**: PQC-Strict headers and HSTS strictly enforce quantum-safe encapsulation, preventing MitM fallback attacks.
