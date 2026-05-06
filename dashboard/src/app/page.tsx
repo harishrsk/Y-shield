@@ -63,7 +63,7 @@ export default function Home() {
             Yochan-Shield
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            The World&apos;s First Cisco-Grade Enterprise Post-Quantum Gateway. 
+            The World&apos;s First Tier-1 Enterprise Post-Quantum Gateway. 
             Dual-deployment on AWS or Local. Protect your assets with <code className="text-emerald-300 bg-emerald-900/40 px-1 py-0.5 rounded">x25519_mlkem768</code> today.
           </p>
           

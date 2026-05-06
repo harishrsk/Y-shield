@@ -35,11 +35,11 @@ export function EbpfHardeningPanel() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-600/5 rounded-full blur-3xl pointer-events-none" />
       )}
 
-      {/* Cisco Grade Overlay */}
+      {/* Enterprise Grade Overlay */}
       <div className="absolute top-4 right-4 z-20">
         <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold uppercase tracking-widest rounded-full flex items-center gap-2">
           <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-          Cisco-Grade Evaluator Node
+          Tier-1 Enterprise Evaluator Node
         </span>
       </div>
 
@@ -119,7 +119,7 @@ export function EbpfHardeningPanel() {
           </div>
         </div>
 
-        {/* Cisco Hardening Checks */}
+        {/* Enterprise Hardening Checks */}
         <div className="bg-black/40 border border-gray-800 rounded-xl p-5">
           <div className="text-xs text-gray-500 uppercase tracking-wider mb-4 font-bold flex items-center gap-2">
             <Lock className="w-4 h-4 text-gray-400" /> Architecture Security Matrix
