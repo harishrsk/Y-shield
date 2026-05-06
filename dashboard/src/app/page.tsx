@@ -39,12 +39,12 @@ export default function Home() {
       />
       
       {/* Hero Section */}
-      <div className="relative isolate overflow-hidden bg-gray-950 px-6 pt-14 lg:px-8">
+      <div className="relative isolate overflow-hidden bg-gray-950 px-4 md:px-6 pt-10 md:pt-14 lg:px-8">
         <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
           <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-emerald-400 to-teal-800 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
         </div>
         
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 text-center">
+        <div className="mx-auto max-w-2xl py-24 sm:py-48 lg:py-56 text-center">
           <div className="mb-8 flex justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
               Introducing Post-Quantum Cryptography Edge.{" "}
@@ -55,8 +55,8 @@ export default function Home() {
             </div>
           </div>
           
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl flex items-center justify-center gap-4">
-            <Shield className="w-12 h-12 text-emerald-400" /> 
+          <h1 className="text-3xl md:text-6xl font-bold tracking-tight text-white flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
+            <Shield className="w-10 h-10 md:w-12 md:h-12 text-emerald-400" /> 
             Y-Shield
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
@@ -97,9 +97,9 @@ export default function Home() {
 
       {/* Layman's Guide Modal */}
       {showLaymanGuide && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md px-4">
-          <div className="bg-gray-950 border border-emerald-500/20 rounded-3xl p-8 max-w-2xl w-full shadow-[0_0_50px_rgba(16,185,129,0.1)] relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-8 opacity-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md px-4 py-8 overflow-y-auto">
+          <div className="bg-gray-950 border border-emerald-500/20 rounded-[2rem] p-6 md:p-10 max-w-2xl w-full shadow-[0_0_50px_rgba(16,185,129,0.1)] relative overflow-hidden my-auto">
+            <div className="absolute top-0 right-0 p-8 opacity-5 hidden sm:block">
               <Shield className="w-64 h-64 text-emerald-500" />
             </div>
             
@@ -123,11 +123,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-10 pt-8 border-t border-gray-900 flex justify-between items-center">
-                <div className="text-sm text-gray-500 font-mono uppercase tracking-widest">Simple Secure Sovereign</div>
+              <div className="mt-8 md:mt-10 pt-6 md:pt-8 border-t border-gray-900 flex flex-col sm:flex-row justify-between items-center gap-6">
+                <div className="text-[10px] text-gray-500 font-mono uppercase tracking-[0.2em] text-center sm:text-left">Simple Secure Sovereign</div>
                 <button 
                   onClick={() => setShowLaymanGuide(false)}
-                  className="px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-black font-bold rounded-xl transition shadow-lg shadow-emerald-500/20"
+                  className="w-full sm:w-auto px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-black font-bold rounded-xl transition shadow-lg shadow-emerald-500/20"
                 >
                   Got it, thanks!
                 </button>

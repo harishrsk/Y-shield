@@ -38,7 +38,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 via-black to-black p-4">
-      <div className="max-w-md w-full space-y-8 p-12 bg-black/40 backdrop-blur-xl rounded-[32px] border border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+      <div className="max-w-md w-full space-y-6 md:space-y-8 p-6 sm:p-12 bg-black/40 backdrop-blur-xl rounded-[32px] border border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">
         {/* Subtle Background Glow */}
         <div className="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/10 rounded-full blur-[80px] group-hover:bg-emerald-500/20 transition-all duration-700"></div>
         

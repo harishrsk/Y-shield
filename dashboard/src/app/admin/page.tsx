@@ -62,20 +62,20 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen bg-black text-white p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-end border-b border-white/10 pb-6 mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-white/10 pb-6 mb-8 gap-6 md:gap-0">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <ShieldAlert className="w-8 h-8 text-blue-500" />
-              <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
+              <ShieldAlert className="w-6 h-6 md:w-8 md:h-8 text-blue-500 shrink-0" />
+              <h1 className="text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
                 Y-Shield Admin Control
               </h1>
             </div>
-            <p className="text-gray-400 font-mono text-sm">Global Sovereign Access Management</p>
+            <p className="text-gray-400 font-mono text-[10px] md:text-sm">Global Sovereign Access Management</p>
           </div>
-          <div className="flex gap-4">
-            <a href="/dashboard" className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition text-sm">Return to Dashboard</a>
+          <div className="flex gap-4 w-full md:w-auto">
+            <a href="/dashboard" className="flex-1 md:flex-none text-center px-4 py-2 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition text-xs md:text-sm">Return to Dashboard</a>
           </div>
         </div>
 

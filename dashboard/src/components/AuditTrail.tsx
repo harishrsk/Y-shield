@@ -21,10 +21,10 @@ export function AuditTrail() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
+    <div className="max-w-7xl mx-auto px-4 md:px-6 py-12">
       <div className="flex items-center gap-3 mb-8">
-        <History className="w-8 h-8 text-emerald-400" />
-        <h2 className="text-3xl font-bold text-white">Live Sovereign Audit Trail</h2>
+        <History className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
+        <h2 className="text-xl md:text-3xl font-bold text-white tracking-tight">Live Sovereign Audit Trail</h2>
       </div>
 
       <div className="overflow-y-auto max-h-[400px] rounded-2xl border border-white/10 bg-gray-900/40 backdrop-blur-xl shadow-inner scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">

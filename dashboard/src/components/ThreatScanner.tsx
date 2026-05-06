@@ -86,30 +86,30 @@ export function ThreatScanner() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-24 px-6 sm:py-32">
+    <div className="max-w-4xl mx-auto py-20 md:py-32 px-4 md:px-6">
       <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 flex items-center justify-center gap-3">
-          <Radar className="w-10 h-10 text-red-500" />
+        <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 flex flex-col md:flex-row items-center justify-center gap-3">
+          <Radar className="w-8 h-8 md:w-10 md:h-10 text-red-500" />
           Quantum Threat Analyzer
         </h2>
-        <p className="mt-4 text-lg text-gray-400">
+        <p className="mt-4 text-base md:text-lg text-gray-400 px-4">
           Enter an actual active domain to dynamically fetch its TLS certificate and test its weaknesses.
         </p>
       </div>
-
-      <div className="bg-gray-950 border border-gray-800 rounded-2xl p-6 shadow-2xl relative overflow-hidden">
+ 
+      <div className="bg-gray-950 border border-gray-800 rounded-2xl p-4 md:p-6 shadow-2xl relative overflow-hidden">
         {scanState === "BREACHED" && (
            <div className="absolute inset-0 bg-red-900/10 pointer-events-none animate-pulse z-0" />
         )}
         {scanState === "SECURE" && (
            <div className="absolute inset-0 bg-emerald-900/10 pointer-events-none animate-pulse z-0" />
         )}
-
-        <div className="relative z-10 flex flex-col md:flex-row gap-4 mb-8">
+ 
+        <div className="relative z-10 flex flex-col sm:flex-row gap-3 md:gap-4 mb-6 md:mb-8">
           <input
             type="text"
-            className="flex-1 bg-gray-900 border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-red-500 font-mono"
-            placeholder="e.g., mail.your-bank.com"
+            className="flex-1 bg-gray-900 border border-gray-700 text-white px-4 py-3 rounded-xl focus:outline-none focus:border-red-500 font-mono text-sm md:text-base"
+            placeholder="mail.your-bank.com"
             value={targetUrl}
             onChange={(e) => setTargetUrl(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && scanState !== "SCANNING" && targetUrl && startScan()}
@@ -118,9 +118,9 @@ export function ThreatScanner() {
           <button
             onClick={startScan}
             disabled={scanState === "SCANNING" || !targetUrl}
-            className="bg-red-600 hover:bg-red-500 disabled:opacity-50 text-white font-bold py-3 px-8 rounded-lg flex items-center justify-center gap-2 transition"
+            className="bg-red-600 hover:bg-red-500 disabled:opacity-50 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition text-sm md:text-base"
           >
-            {scanState === "SCANNING" ? "Scanning Network..." : <><TerminalSquare className="w-5 h-5"/> Deep Scan Host</>}
+            {scanState === "SCANNING" ? "Scanning..." : <><TerminalSquare className="w-4 h-4 md:w-5 md:h-5"/> Deep Scan</>}
           </button>
         </div>
 

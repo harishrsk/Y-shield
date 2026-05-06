@@ -103,9 +103,9 @@ export function ComplianceGenerator() {
   if (!isClient) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center p-8 bg-gray-900 rounded-2xl border border-gray-800 shadow-xl max-w-2xl mx-auto my-12">
-      <h3 className="text-2xl font-bold text-white mb-4">Compliance & Audit Export</h3>
-      <p className="text-gray-400 text-center mb-8">
+    <div className="flex flex-col items-center justify-center p-6 md:p-10 bg-gray-900 rounded-2xl border border-gray-800 shadow-xl max-w-2xl mx-auto my-12">
+      <h3 className="text-xl md:text-2xl font-bold text-white mb-4 text-center">Compliance & Audit Export</h3>
+      <p className="text-sm text-gray-400 text-center mb-8 px-2">
         Generate an official PDF audit report demonstrating compliance with NIST 800-207, CNSA 2.0, and **Indian NQM Level 4 Sovereign** standards.
       </p>
 

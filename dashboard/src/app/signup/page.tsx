@@ -43,7 +43,7 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/40 via-black to-black p-4">
-      <div className="max-w-md w-full space-y-8 p-12 bg-black/60 backdrop-blur-2xl rounded-[24px] border border-blue-500/20 shadow-[0_0_80px_rgba(59,130,246,0.15)] relative overflow-hidden">
+      <div className="max-w-md w-full space-y-6 md:space-y-8 p-6 sm:p-12 bg-black/60 backdrop-blur-2xl rounded-[24px] border border-blue-500/20 shadow-[0_0_80px_rgba(59,130,246,0.15)] relative overflow-hidden">
         {/* Subtle Background Glow for Signup */}
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px]"></div>
         
