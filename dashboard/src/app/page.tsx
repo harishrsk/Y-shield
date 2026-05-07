@@ -79,6 +79,9 @@ export default function Home() {
             <a href="/checkout" className="w-full sm:w-auto rounded-md bg-emerald-500 px-6 py-3 text-sm font-semibold text-black shadow-sm hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400">
               Purchase License
             </a>
+            <a href="/sales" className="w-full sm:w-auto rounded-md border border-emerald-500/50 bg-emerald-500/10 px-6 py-3 text-sm font-semibold text-emerald-400 hover:bg-emerald-500/20 transition-all">
+              Consult Sales Architect
+            </a>
             <a href="/dashboard" className="w-full sm:w-auto text-sm font-semibold leading-6 text-white hover:text-emerald-300 transition-colors">
               Access Client Portal <span aria-hidden="true">→</span>
             </a>
