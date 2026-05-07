@@ -1,8 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet, Dimensions, Platform } from 'react-native';
-import { Shield, Zap, Terminal, FileText, Download, UserCheck, AlertCircle } from 'lucide-react-native';
+"use client";
 
-const { width } = Dimensions.get('window');
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Shield, 
+  Zap, 
+  Terminal as TerminalIcon, 
+  FileText, 
+  Download, 
+  UserCheck, 
+  AlertCircle,
+  ChevronRight,
+  Send
+} from 'lucide-react';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 export const SalesArchitectAgent = () => {
   const [messages, setMessages] = useState([
@@ -12,6 +27,8 @@ export const SalesArchitectAgent = () => {
   const [step, setStep] = useState(0);
   const [terminalOutput, setTerminalOutput] = useState(['> System Ready', '> Awaiting Handshake...']);
   const [showAssessment, setShowAssessment] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
 
   const steps = [
     { q: "Step 1/4: What is your primary encryption algorithm for data-at-rest? (e.g., AES-256, RSA-2048)", key: 'encryption' },
@@ -20,18 +37,27 @@ export const SalesArchitectAgent = () => {
     { q: "Step 4/4: Which compliance mandate is your primary focus? (NQM, GDPR, DPDP)", key: 'compliance' }
   ];
 
+  useEffect(() => {
+    if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [messages]);
+
+  useEffect(() => {
+    if (terminalRef.current) terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+  }, [terminalOutput]);
+
   const handleSend = () => {
-    if (!input) return;
+    if (!input.trim()) return;
     
-    const newMessages = [...messages, { id: Date.now(), role: 'user', content: input }];
-    setMessages(newMessages);
+    const userMsg = { id: Date.now(), role: 'user' as const, content: input };
+    setMessages(prev => [...prev, userMsg]);
+    const currentInput = input;
     setInput('');
 
     if (step < steps.length) {
       setTimeout(() => {
         setMessages(prev => [...prev, { id: Date.now() + 1, role: 'agent', content: steps[step].q }]);
         setStep(step + 1);
-        simulateTerminal(`Processing ${steps[step].key}...`);
+        simulateTerminal(`Processing ${steps[step].key}: ${currentInput}`);
       }, 800);
     } else {
       setTimeout(() => {
@@ -43,7 +69,7 @@ export const SalesArchitectAgent = () => {
   };
 
   const simulateTerminal = (msg: string) => {
-    setTerminalOutput(prev => [...prev.slice(-10), `> ${msg}`]);
+    setTerminalOutput(prev => [...prev.slice(-15), `> ${msg}`]);
   };
 
   const simulateHandshake = () => {
@@ -53,7 +79,8 @@ export const SalesArchitectAgent = () => {
       "Shared Secret Derived: 0x4F...E1",
       "Mathematical Proof: SECURE",
       "Classical RSA: VULNERABLE",
-      "Handshake Completed in 0.42ms"
+      "Handshake Completed in 0.42ms",
+      "Generating Artifact: quantum_risk_assessment.pdf"
     ];
     frames.forEach((f, i) => {
       setTimeout(() => simulateTerminal(f), i * 300);
@@ -61,232 +88,133 @@ export const SalesArchitectAgent = () => {
   };
 
   return (
-    <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Shield color="#00A3FF" size={24} />
-        <Text style={styles.headerText}>SALES ARCHITECT AGENT</Text>
-        <View style={styles.badge}><Text style={styles.badgeText}>SOVEREIGN</Text></View>
-      </View>
+    <div className="flex flex-col lg:flex-row gap-8 w-full max-w-7xl mx-auto p-4 lg:p-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+      
+      {/* Left Column: Terminal & Feature Cards */}
+      <div className="flex-1 space-y-6 order-2 lg:order-1">
+        {/* Sandbox Terminal */}
+        <div className="glass-card rounded-3xl overflow-hidden border border-emerald-500/20 bg-black shadow-[0_0_40px_rgba(16,185,129,0.1)]">
+          <div className="bg-emerald-500/10 px-4 py-2 border-b border-emerald-500/20 flex items-center gap-2">
+            <TerminalIcon size={14} className="text-emerald-400" />
+            <span className="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider">Sandbox Terminal - PQC_DEMO_V1</span>
+          </div>
+          <div 
+            ref={terminalRef}
+            className="h-64 overflow-y-auto p-4 font-mono text-xs text-emerald-500/80 space-y-1 scrollbar-hide"
+          >
+            {terminalOutput.map((line, i) => (
+              <div key={i} className="flex gap-2">
+                <span className="opacity-50">[{new Date().toLocaleTimeString()}]</span>
+                <span>{line}</span>
+              </div>
+            ))}
+            <div className="w-2 h-4 bg-emerald-500/50 animate-pulse inline-block"></div>
+          </div>
+        </div>
 
-      {/* Main Content */}
-      <ScrollView style={styles.chatArea}>
-        {messages.map(m => (
-          <View key={m.id} style={[styles.message, m.role === 'user' ? styles.userMessage : styles.agentMessage]}>
-            <Text style={styles.messageText}>{m.content}</Text>
-          </View>
-        ))}
-      </ScrollView>
+        {/* Feature Highlights */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="glass-card p-6 rounded-2xl border border-white/5 bg-white/5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 bg-cyan-500/10 rounded-lg"><Shield size={18} className="text-cyan-400" /></div>
+              <h4 className="font-bold text-white text-sm">Sovereign Protocol</h4>
+            </div>
+            <p className="text-xs text-zinc-400 leading-relaxed">
+              Enforcing ML-KEM-768 and ML-DSA-65 standards for mathematical immunity against quantum decryption.
+            </p>
+          </div>
+          <div className="glass-card p-6 rounded-2xl border border-white/5 bg-white/5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 bg-purple-500/10 rounded-lg"><Zap size={18} className="text-purple-400" /></div>
+              <h4 className="font-bold text-white text-sm">AVX-512 Optimized</h4>
+            </div>
+            <p className="text-xs text-zinc-400 leading-relaxed">
+              High-performance vectorization ensuring PQC overhead remains under 0.5ms per handshake.
+            </p>
+          </div>
+        </div>
+      </div>
 
-      {/* Sandbox Terminal */}
-      <View style={styles.terminal}>
-        <View style={styles.terminalHeader}>
-          <Terminal color="#00FFCC" size={14} />
-          <Text style={styles.terminalHeaderText}>SANDBOX TERMINAL - PQC_DEMO_V1</Text>
-        </View>
-        <ScrollView style={styles.terminalBody}>
-          {terminalOutput.map((line, i) => (
-            <Text key={i} style={styles.terminalText}>{line}</Text>
+      {/* Right Column: Chat Interface */}
+      <div className="w-full lg:w-[450px] flex flex-col h-[600px] lg:h-[700px] glass-card rounded-3xl overflow-hidden border border-white/10 bg-zinc-950/50 backdrop-blur-xl order-1 lg:order-2 shadow-2xl">
+        {/* Header */}
+        <div className="p-6 border-b border-white/5 bg-white/5 flex items-center gap-4">
+          <div className="relative">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-600 to-purple-600 flex items-center justify-center">
+              <Shield size={24} className="text-white" />
+            </div>
+            <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-zinc-950 animate-pulse"></div>
+          </div>
+          <div>
+            <h3 className="font-bold text-white tracking-tight">Sales Architect</h3>
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Active Diagnostic Mode</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Chat Body */}
+        <div 
+          ref={scrollRef}
+          className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide"
+        >
+          {messages.map((m) => (
+            <div 
+              key={m.id}
+              className={cn(
+                "flex flex-col max-w-[85%] animate-in fade-in slide-in-from-bottom-2",
+                m.role === 'user' ? "ml-auto items-end" : "mr-auto items-start"
+              )}
+            >
+              <div className={cn(
+                "px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-lg",
+                m.role === 'user' 
+                  ? "bg-cyan-600 text-white rounded-tr-none" 
+                  : "bg-zinc-900 border border-white/10 text-zinc-200 rounded-tl-none backdrop-blur-sm"
+              )}>
+                {m.content}
+              </div>
+            </div>
           ))}
-        </ScrollView>
-      </View>
+        </div>
 
-      {/* Input Area / Assessment */}
-      {showAssessment ? (
-        <View style={styles.assessmentPanel}>
-          <View style={styles.assessmentHeader}>
-            <FileText color="#BA00FF" size={20} />
-            <Text style={styles.assessmentTitle}>Quantum Risk Assessment Ready</Text>
-          </View>
-          <TouchableOpacity style={styles.downloadButton}>
-            <Download color="#FFF" size={18} />
-            <Text style={styles.downloadButtonText}>DOWNLOAD REPORT (PDF)</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.callButton}>
-            <UserCheck color="#FFF" size={18} />
-            <Text style={styles.callButtonText}>TALK TO HUMAN ARCHITECT</Text>
-          </TouchableOpacity>
-        </View>
-      ) : (
-        <View style={styles.inputArea}>
-          <TextInput 
-            style={styles.input}
-            value={input}
-            onChangeText={setInput}
-            placeholder="Type your response..."
-            placeholderTextColor="#666"
-          />
-          <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-            <Zap color="#FFF" size={20} />
-          </TouchableOpacity>
-        </View>
-      )}
-    </View>
+        {/* Footer: Input / Assessment */}
+        <div className="p-6 bg-black/40 border-t border-white/5">
+          {showAssessment ? (
+            <div className="space-y-3 animate-in zoom-in-95 duration-500">
+              <div className="flex items-center gap-2 mb-2">
+                <FileText size={16} className="text-purple-400" />
+                <span className="text-xs font-bold text-white uppercase tracking-tighter">Quantum Risk Assessment Ready</span>
+              </div>
+              <button className="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+                <Download size={18} />
+                DOWNLOAD REPORT (PDF)
+              </button>
+              <button className="w-full bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all">
+                <UserCheck size={18} />
+                TALK TO HUMAN ARCHITECT
+              </button>
+            </div>
+          ) : (
+            <div className="relative">
+              <input 
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                placeholder="Type your response..."
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-cyan-500/50 transition-colors pr-14 text-zinc-200 placeholder:text-zinc-600"
+              />
+              <button 
+                onClick={handleSend}
+                className="absolute right-2 top-2 p-2 rounded-lg bg-cyan-600 text-white hover:bg-cyan-500 transition-all active:scale-90"
+              >
+                <Send size={20} />
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#050505',
-    padding: 16,
-    borderRadius: 24,
-    borderWidth: 1,
-    borderColor: '#222',
-    height: 700,
-    width: Platform.OS === 'web' ? 450 : width - 32,
-    alignSelf: 'center',
-    overflow: 'hidden',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-    gap: 12,
-  },
-  headerText: {
-    color: '#FFF',
-    fontSize: 14,
-    fontWeight: '900',
-    letterSpacing: 1,
-  },
-  badge: {
-    backgroundColor: '#00A3FF22',
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: '#00A3FF44',
-  },
-  badgeText: {
-    color: '#00A3FF',
-    fontSize: 8,
-    fontWeight: 'bold',
-  },
-  chatArea: {
-    flex: 1,
-    marginBottom: 16,
-  },
-  message: {
-    padding: 12,
-    borderRadius: 16,
-    marginBottom: 12,
-    maxWidth: '85%',
-  },
-  agentMessage: {
-    backgroundColor: '#111',
-    borderWidth: 1,
-    borderColor: '#222',
-    alignSelf: 'flex-start',
-    borderTopLeftRadius: 4,
-  },
-  userMessage: {
-    backgroundColor: '#00A3FF',
-    alignSelf: 'flex-end',
-    borderTopRightRadius: 4,
-  },
-  messageText: {
-    color: '#EEE',
-    fontSize: 13,
-    lineHeight: 18,
-  },
-  terminal: {
-    backgroundColor: '#000',
-    height: 150,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#00FFCC22',
-    marginBottom: 16,
-    overflow: 'hidden',
-  },
-  terminalHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#00FFCC11',
-    padding: 6,
-    gap: 8,
-  },
-  terminalHeaderText: {
-    color: '#00FFCC',
-    fontSize: 9,
-    fontWeight: 'bold',
-    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
-  },
-  terminalBody: {
-    padding: 8,
-  },
-  terminalText: {
-    color: '#00FFCC',
-    fontSize: 10,
-    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
-    marginBottom: 2,
-  },
-  inputArea: {
-    flexDirection: 'row',
-    gap: 12,
-  },
-  input: {
-    flex: 1,
-    backgroundColor: '#111',
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    color: '#FFF',
-    fontSize: 14,
-    borderWidth: 1,
-    borderColor: '#333',
-  },
-  sendButton: {
-    backgroundColor: '#00A3FF',
-    width: 48,
-    height: 48,
-    borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  assessmentPanel: {
-    gap: 12,
-    padding: 16,
-    backgroundColor: '#111',
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: '#BA00FF44',
-  },
-  assessmentHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  assessmentTitle: {
-    color: '#FFF',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  downloadButton: {
-    backgroundColor: '#BA00FF',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 12,
-    borderRadius: 12,
-    gap: 8,
-  },
-  downloadButtonText: {
-    color: '#FFF',
-    fontSize: 12,
-    fontWeight: '900',
-  },
-  callButton: {
-    backgroundColor: '#222',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 12,
-    borderRadius: 12,
-    gap: 8,
-  },
-  callButtonText: {
-    color: '#FFF',
-    fontSize: 12,
-    fontWeight: 'bold',
-  }
-});

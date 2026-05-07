@@ -1,4 +1,4 @@
-import { SalesAgent } from "@/components/SalesAgent";
+import { SalesArchitectAgent } from "@/components/SalesArchitectAgent";
 import { Shield } from "lucide-react";
 import Link from "next/link";
 
@@ -34,7 +34,7 @@ export default function SalesPage() {
 
       {/* Main Content */}
       <main className="relative z-10 pt-12 pb-24">
-        <SalesAgent />
+        <SalesArchitectAgent />
       </main>
 
       {/* Footer Decoration */}
