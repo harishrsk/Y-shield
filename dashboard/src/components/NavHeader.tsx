@@ -36,7 +36,10 @@ export function NavHeader() {
                 Dashboard
               </a>
               <button 
-                onClick={() => signOut()}
+                onClick={async () => {
+                  const data = await signOut({ redirect: false, callbackUrl: "/" });
+                  window.location.href = "/";
+                }}
                 className="p-2 text-gray-500 hover:text-red-400 transition-colors"
                 title="Logout"
               >
@@ -92,7 +95,15 @@ export function NavHeader() {
           {status === "authenticated" ? (
             <div className="flex justify-between items-center">
               <a href="/dashboard" className="text-emerald-400 font-bold text-sm">Client Portal</a>
-              <button onClick={() => signOut()} className="text-red-400 text-sm font-medium">Logout</button>
+              <button 
+                onClick={async () => {
+                  await signOut({ redirect: false, callbackUrl: "/" });
+                  window.location.href = "/";
+                }} 
+                className="text-red-400 text-sm font-medium"
+              >
+                Logout
+              </button>
             </div>
           ) : (
             <div className="flex flex-col gap-3">
