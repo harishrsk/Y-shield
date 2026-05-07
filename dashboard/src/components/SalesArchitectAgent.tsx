@@ -30,6 +30,12 @@ export const SalesArchitectAgent = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const steps = [
     { q: "Step 1/4: What is your primary encryption algorithm for data-at-rest? (e.g., AES-256, RSA-2048)", key: 'encryption' },
     { q: "Step 2/4: What is the estimated shelf-life of your most sensitive data? (5yr, 10yr, 30yr+)", key: 'shelfLife' },
@@ -86,6 +92,8 @@ export const SalesArchitectAgent = () => {
       setTimeout(() => simulateTerminal(f), i * 300);
     });
   };
+
+  if (!isMounted) return null; // Prevent hydration mismatch
 
   return (
     <div className="flex flex-col lg:flex-row gap-8 w-full max-w-7xl mx-auto p-4 lg:p-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
