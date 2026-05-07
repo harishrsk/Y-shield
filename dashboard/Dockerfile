@@ -1,6 +1,9 @@
 # Use the official Node.js image (Debian-slim is more robust than Alpine for npm ci)
 FROM node:20-slim AS base
 
+# Install OpenSSL as it is required by Prisma
+RUN apt-get update && apt-get install -y openssl libssl-dev && rm -rf /var/lib/apt/lists/*
+
 # Install dependencies only when needed
 FROM base AS deps
 WORKDIR /app
